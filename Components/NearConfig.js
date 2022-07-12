@@ -1,6 +1,6 @@
 import { connect, keyStores, WalletConnection } from "near-api-js";
 
-export const Wallet = async () => {
+export const NearConfig = async () => {
 	const config = {
 		networkId: "testnet",
 		keyStore: new keyStores.BrowserLocalStorageKeyStore(),
@@ -9,6 +9,5 @@ export const Wallet = async () => {
 		helperUrl: "https://helper.testnet.near.org",
 		explorerUrl: "https://explorer.testnet.near.org",
 	};
-	let near = await connect(config);
-	return new WalletConnection(near);
+	return await connect(config);
 };

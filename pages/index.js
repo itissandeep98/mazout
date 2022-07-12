@@ -1,8 +1,5 @@
-import { Wallet } from "../Components/Wallet";
-
-function Index() {
-	const signIn = async () => {
-		let wallet = await Wallet();
+function Index({ wallet }) {
+	const signIn = () => {
 		wallet.requestSignIn(
 			"example-contract.testnet", // contract requesting access
 			"Mazout", // optional
