@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
 import { showAlert } from "../Components/Alert";
+import { utils } from "near-api-js";
 
 function Home({ wallet, near }) {
 	const router = useRouter();
-	const { account_id, public_key, all_keys } = router.query;
-	console.log(all_keys);
+	console.log(wallet?.account());
+
+	const account_id = wallet?.account().accountId;
 
 	const signOut = async () => {
 		wallet.signOut();
@@ -14,11 +16,15 @@ function Home({ wallet, near }) {
 	const sendTokens = async () => {
 		try {
 			const account = await near.account(account_id);
+
+			console.log(await account.getAccessKeys());
+
 			await account.sendMoney(
 				"itissandeep98.testnet", // receiver account
-				"100000000000000000000" // amount in yoctoNEAR
+				"100000000" // amount in yoctoNEAR
 			);
 		} catch (error) {
+			console.log(error);
 			showAlert(error.message, "error");
 		}
 	};

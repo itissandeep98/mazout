@@ -1,4 +1,12 @@
+import { useRouter } from "next/router";
+
 function Index({ wallet }) {
+	const router = useRouter();
+
+	if (wallet?.isSignedIn()) {
+		router.push("/home");
+	}
+
 	const signIn = () => {
 		wallet.requestSignIn(
 			"example-contract.testnet", // contract requesting access

@@ -1,9 +1,10 @@
 import { WalletConnection } from "near-api-js";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NearConfig } from "../Components/NearConfig";
 
 const LayoutWrapper = (params) => {
 	const { children, ...props } = params;
+
 	const [wallet, setWallet] = useState(null);
 	const [near, setNear] = useState(null);
 	useEffect(() => {
