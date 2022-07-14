@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-function Slide2() {
+function Slide2({ inc }) {
 	const healthData = [
 		{
 			key: "Upto 100% in 70 min for 226 km topup",
@@ -89,7 +89,10 @@ function Slide2() {
 						Enter Range
 					</label>
 				</div>
-				<div className=" font-semibold text-xl  items-center flex  ">
+				<div
+					className=" font-semibold text-xl  items-center flex  "
+					onClick={inc}
+				>
 					0
 					<Image src="/near.png" height="50" width="50" alt="near" />
 				</div>
