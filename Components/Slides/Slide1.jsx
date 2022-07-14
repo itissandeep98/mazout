@@ -51,7 +51,7 @@ function Slide1({ account_id, inc }) {
 				<div className="items-center flex ">
 					<div
 						onClick={inc}
-						className="text-2xl bg-green-600 hover:bg-green-700 cursor-pointer rounded-2xl font-bold p-2"
+						className="text-2xl bg-green-600 hover:bg-green-700 cursor-pointer rounded-2xl font-bold py-2 px-6"
 					>
 						See Quick Plans{" "}
 						<svg
@@ -71,13 +71,6 @@ function Slide1({ account_id, inc }) {
 					</div>
 				</div>
 			</div>
-			{/* <button
-					type="button"
-					onClick={sendTokens}
-					className="text-white block m-4  focus:outline-none focus:ring-4  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 bg-green-600 hover:bg-green-700 focus:ring-green-900"
-				>
-					Send Tokens
-				</button> */}
 		</div>
 	);
 }

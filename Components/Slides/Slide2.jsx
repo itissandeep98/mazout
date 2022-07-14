@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 function Slide2({ inc }) {
-	const healthData = [
+	const plans = [
 		{
 			key: "Upto 100% in 70 min for 226 km topup",
 			value: "0.8",
@@ -24,7 +24,7 @@ function Slide2({ inc }) {
 			<div className="overflow-x-auto relative w-full  sm:rounded-lg border my-2 border-black">
 				<table className="w-full text-sm text-left ">
 					<tbody>
-						{healthData.map((item, index) => (
+						{plans.map((item, index) => (
 							<tr key={index} className="">
 								<th className=" px-6 font-medium  whitespace-nowrap   ">
 									<div className="bg-green-600 w-9/12 rounded-full px-6 py-2">
@@ -32,9 +32,9 @@ function Slide2({ inc }) {
 									</div>
 								</th>
 								<td className="py-4 px-6  ">
-									<div className=" font-semibold  items-center flex  ">
+									<div className=" font-semibold  items-center flex cursor-pointer ">
 										{item.value}
-										<Image src="/near.png" height="50" width="50" alt="near" />
+										<Image src="/near.png" height="20" width="50" alt="near" />
 									</div>
 								</td>
 							</tr>
@@ -93,8 +93,7 @@ function Slide2({ inc }) {
 					className=" font-semibold text-xl  items-center flex  "
 					onClick={inc}
 				>
-					0
-					<Image src="/near.png" height="50" width="50" alt="near" />
+					0 <Image src="/near.png" height="20" width="50" alt="near" />
 				</div>
 			</div>
 		</div>
