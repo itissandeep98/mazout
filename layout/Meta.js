@@ -36,7 +36,7 @@ const Meta = ({ title, keywords, description, url, image }) => {
 				<meta property="og:title" content={title} />
 				<meta property="og:description" content={description} />
 				<meta property="og:image" content={image || defaultImage} />
-				<meta property="og:site_name" content="Respct" />
+				<meta property="og:site_name" content={title} />
 
 				<Script
 					async
