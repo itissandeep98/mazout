@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { showAlert } from "../Components/Alert";
 import Slide1 from "../Components/Slides/Slide1";
 import Slide2 from "../Components/Slides/Slide2";
 import Slide3 from "../Components/Slides/Slide3";
@@ -17,25 +16,21 @@ function Home({ wallet, near }) {
 		router.push("/");
 	};
 
-	const sendTokens = async () => {
-		try {
-			const account = await near.account(account_id);
-
-			await account.sendMoney(
-				"itissandeep98.testnet", // receiver account
-				"100000000" // amount in yoctoNEAR
-			);
-		} catch (error) {
-			console.log(error);
-			showAlert(error.message, "error");
-		}
-	};
-
 	const slides = [
 		<Slide1 key={1} account_id={account_id} inc={() => setIndex(index + 1)} />,
-		<Slide2 key={2} inc={() => setIndex(index + 1)} />,
+		<Slide2
+			key={2}
+			inc={() => setIndex(index + 1)}
+			near={near}
+			account_id={account_id}
+		/>,
 		<Slide3 key={3} inc={() => setIndex(index + 1)} />,
-		<Slide4 key={4} inc={() => setIndex(index + 1)} />,
+		<Slide4
+			key={4}
+			inc={() => setIndex(index + 1)}
+			near={near}
+			account_id={account_id}
+		/>,
 	];
 
 	return (
