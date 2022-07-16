@@ -44,7 +44,7 @@ function Slide2({ inc, near, account_id }) {
 			</div>
 			<p className="font-semibold ">Or set your custom requirements:</p>
 			<div className="flex flex-row  justify-between mt-5">
-				<div class="relative z-0 mb-6 group">
+				<div className="relative z-0 mb-6 group">
 					<input
 						type="number"
 						name="floating_soc"
@@ -59,7 +59,7 @@ function Slide2({ inc, near, account_id }) {
 						Enter SOC
 					</label>
 				</div>
-				<div class="relative z-0 mb-6 group">
+				<div className="relative z-0 mb-6 group">
 					<input
 						type="number"
 						name="floating_duration"
@@ -74,7 +74,7 @@ function Slide2({ inc, near, account_id }) {
 						Enter Duration
 					</label>
 				</div>
-				<div class="relative z-0 mb-6 group">
+				<div className="relative z-0 mb-6 group">
 					<input
 						type="number"
 						name="floating_range"
