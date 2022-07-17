@@ -1,14 +1,11 @@
-import Image from "next/image";
 import { QRCode } from "react-qrcode-logo";
-import { baseURL } from "./config";
-import NearPayBtn from "./NearPayBtn";
+import { baseURL } from "../config/constants";
 
-function QRModal({ show, setShow, value }) {
-	if (!show) {
-		return <div />;
-	}
+function QRModal({ setShow, value, uniqueID }) {
 	const url = new URL(baseURL);
 	url.searchParams.set("value", value);
+	url.searchParams.set("uniqueID", uniqueID);
+
 	return (
 		<div className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 inset-0 h-full  backdrop-blur-sm  flex items-center justify-center">
 			<div className="relative w-full max-w-md h-auto  ">

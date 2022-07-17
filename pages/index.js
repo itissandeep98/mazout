@@ -1,14 +1,16 @@
 import { KeyPair, utils } from "near-api-js";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { showAlert } from "../Components/Alert";
-import { baseURL, explorerUrl, PayoutAccount } from "../Components/config";
-import Link from "next/link";
+import { baseURL, explorerUrl, PayoutAccount } from "../config/constants";
+import { supabase } from "../config/supabase";
+
 const PENDING_ACCESS_KEY_PREFIX = "pending_key";
 
 function Index({ wallet, near }) {
 	const router = useRouter();
-	const { value } = router.query;
+	const { value, uniqueID } = router.query;
 	const account_id = wallet?.account()?.accountId;
 	const [status, setStatus] = useState(false);
 	const [transaction, setTransaction] = useState(null);
@@ -28,6 +30,14 @@ function Index({ wallet, near }) {
 			setStatus(true);
 			setTransaction(result.transaction);
 			console.log(result);
+			const { data, error } = await supabase
+				.from("transactions")
+				.update({
+					user: account_id,
+					status: true,
+					updated_at: new Date().toISOString().slice(0, 23).replace("T", " "),
+				})
+				.match({ id: uniqueID });
 		} catch (error) {
 			console.log(error);
 			showAlert(error.message, "error");
@@ -60,6 +70,8 @@ function Index({ wallet, near }) {
 	useEffect(() => {
 		const url = new URL(baseURL);
 		url.searchParams.set("value", value);
+		url.searchParams.set("uniqueID", uniqueID);
+
 		if (!wallet?.isSignedIn() && value) {
 			loginFullAccess({ successUrl: url });
 		}
@@ -71,7 +83,7 @@ function Index({ wallet, near }) {
 				<div>
 					{status ? (
 						<>
-							<p className="text-[#3a6b35] text-3xl">
+							<p className="text-[#3a6b35] text-3xl font-bold">
 								Transaction successfull, Now you can use the vehicle ;)
 							</p>
 							<Link href={`${explorerUrl}/${transaction.hash}`} target="_blank">

@@ -40,7 +40,7 @@ function Slide2({ inc }) {
 									</div>
 								</th>
 								<td className="py-4 px-6  ">
-									<NearPayBtn value={item.value} />
+									<NearPayBtn value={item.value} inc={inc} />
 								</td>
 							</tr>
 						))}
@@ -60,7 +60,7 @@ function Slide2({ inc }) {
 						onChange={(e) => setSoc(parseInt(e.target.value))}
 					/>
 					<label
-						for="floating_soc"
+						htmlFor="floating_soc"
 						className="peer-focus:font-medium absolute text-sm  text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
 					>
 						Enter SOC
@@ -77,7 +77,7 @@ function Slide2({ inc }) {
 						onChange={(e) => setDuration(parseInt(e.target.value))}
 					/>
 					<label
-						for="floating_duration"
+						htmlFor="floating_duration"
 						className="peer-focus:font-medium absolute text-sm  text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
 					>
 						Enter Duration
@@ -94,14 +94,14 @@ function Slide2({ inc }) {
 						onChange={(e) => setRange(parseInt(e.target.value))}
 					/>
 					<label
-						for="floating_range"
+						htmlFor="floating_range"
 						className="peer-focus:font-medium absolute text-sm  text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
 					>
 						Enter Range
 					</label>
 				</div>
 				<div className=" font-semibold text-xl  items-center flex  ">
-					<NearPayBtn value={amount} />
+					<NearPayBtn value={amount} inc={inc} />
 				</div>
 			</div>
 		</div>
