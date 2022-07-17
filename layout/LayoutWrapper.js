@@ -19,7 +19,13 @@ const LayoutWrapper = (params) => {
 		}
 	}, [near]);
 
-	return <>{React.cloneElement(children, { wallet, near, ...props })}</>;
+	return (
+		<>
+			{wallet &&
+				near &&
+				React.cloneElement(children, { wallet, near, ...props })}
+		</>
+	);
 };
 
 export default LayoutWrapper;

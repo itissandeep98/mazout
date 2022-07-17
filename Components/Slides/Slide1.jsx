@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-function Slide1({ account_id, inc }) {
+function Slide1({ inc }) {
 	const healthData = [
 		{
 			key: "soc",
@@ -30,7 +30,7 @@ function Slide1({ account_id, inc }) {
 	];
 	return (
 		<div>
-			<h1 className="text-3xl font-extrabold mb-10">Welcome {account_id}!</h1>
+			<h1 className="text-3xl font-extrabold mb-10">Welcome User!</h1>
 			<p className="font-semibold ">
 				Here&apos;s what your battery health looks like:
 			</p>

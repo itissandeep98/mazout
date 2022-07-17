@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NearPayBtn from "../NearPayBtn";
 
-function Slide2({ inc, near, account_id }) {
+function Slide2({ inc }) {
 	const [soc, setSoc] = useState(0);
 	const [duration, setDuration] = useState(0);
 	const [range, setRange] = useState(0);
@@ -40,11 +40,7 @@ function Slide2({ inc, near, account_id }) {
 									</div>
 								</th>
 								<td className="py-4 px-6  ">
-									<NearPayBtn
-										value={item.value}
-										near={near}
-										account_id={account_id}
-									/>
+									<NearPayBtn value={item.value} />
 								</td>
 							</tr>
 						))}
@@ -104,11 +100,8 @@ function Slide2({ inc, near, account_id }) {
 						Enter Range
 					</label>
 				</div>
-				<div
-					className=" font-semibold text-xl  items-center flex  "
-					onClick={inc}
-				>
-					<NearPayBtn value={amount} near={near} account_id={account_id} />
+				<div className=" font-semibold text-xl  items-center flex  ">
+					<NearPayBtn value={amount} />
 				</div>
 			</div>
 		</div>
