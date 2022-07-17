@@ -1,6 +1,15 @@
+import { useEffect, useState } from "react";
 import NearPayBtn from "../NearPayBtn";
 
 function Slide2({ inc, near, account_id }) {
+	const [soc, setSoc] = useState(0);
+	const [duration, setDuration] = useState(0);
+	const [range, setRange] = useState(0);
+	const [amount, setAmount] = useState(0);
+	useEffect(() => {
+		setAmount((soc / 10 + duration / 10 + range / 10).toFixed(2));
+	}, [soc, duration, range]);
+
 	const plans = [
 		{
 			key: "Upto 100% in 70 min for 226 km topup",
@@ -20,13 +29,13 @@ function Slide2({ inc, near, account_id }) {
 			<h1 className="text-3xl font-extrabold mb-10">Charge up your EV</h1>
 			<p className="font-semibold ">Select among one of the quick plans:</p>
 
-			<div className="overflow-x-auto relative w-full  sm:rounded-lg border my-2 border-black">
+			<div className="overflow-x-auto relative w-full py-2  sm:rounded-lg  bg-[#cbd18f] my-4 rounded-2xl">
 				<table className="w-full text-sm text-left ">
 					<tbody>
 						{plans.map((item, index) => (
 							<tr key={index} className="">
-								<th className=" px-6 font-medium  whitespace-nowrap   ">
-									<div className="bg-green-600 w-9/12 rounded-full px-6 py-2 truncate">
+								<th className=" px-6  whitespace-nowrap   ">
+									<div className="bg-[#3a6b35] text-[#e3b448] w-9/12 rounded-full px-6 py-2 truncate">
 										{item.key}
 									</div>
 								</th>
@@ -51,6 +60,8 @@ function Slide2({ inc, near, account_id }) {
 						className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-gray-900 border-gray-600  focus:outline-none focus:ring-0  peer"
 						placeholder=" "
 						required
+						value={soc}
+						onChange={(e) => setSoc(parseInt(e.target.value))}
 					/>
 					<label
 						for="floating_soc"
@@ -66,6 +77,8 @@ function Slide2({ inc, near, account_id }) {
 						className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-gray-900 border-gray-600  focus:outline-none focus:ring-0  peer"
 						placeholder=" "
 						required
+						value={duration}
+						onChange={(e) => setDuration(parseInt(e.target.value))}
 					/>
 					<label
 						for="floating_duration"
@@ -81,6 +94,8 @@ function Slide2({ inc, near, account_id }) {
 						className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-gray-900 border-gray-600  focus:outline-none focus:ring-0  peer"
 						placeholder=" "
 						required
+						value={range}
+						onChange={(e) => setRange(parseInt(e.target.value))}
 					/>
 					<label
 						for="floating_range"
@@ -93,7 +108,7 @@ function Slide2({ inc, near, account_id }) {
 					className=" font-semibold text-xl  items-center flex  "
 					onClick={inc}
 				>
-					<NearPayBtn value={10} near={near} account_id={account_id} />
+					<NearPayBtn value={amount} near={near} account_id={account_id} />
 				</div>
 			</div>
 		</div>

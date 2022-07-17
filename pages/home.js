@@ -34,7 +34,7 @@ function Home({ wallet, near }) {
 	];
 
 	return (
-		<div className="bg-gray-400 text-black px-20 py-10 w-full rounded-xl relative">
+		<div className="bg-[#cbd18f] text-black px-20 py-10 w-full rounded-xl relative font-poppins">
 			<div className="absolute right-0 top-0">
 				<Image
 					src="/logo1.png"
@@ -48,7 +48,7 @@ function Home({ wallet, near }) {
 			<button
 				type="button"
 				onClick={signOut}
-				className="text-white block m-4 absolute right-0 bottom-0  focus:outline-none focus:ring-4  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 bg-red-600 hover:bg-red-700 focus:ring-red-900"
+				className="text-red-700 hover:text-white block m-4 absolute right-0 bottom-0  transition duration-200 ease-in    font-medium rounded-full text-sm px-5 py-2.5 border border-red-700  hover:bg-red-700 "
 			>
 				Sign out
 			</button>
