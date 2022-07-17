@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { supabase } from "../config/supabase";
+import { showAlert } from "./Alert";
 import QRModal from "./QRModal";
 
 function NearPayBtn({ value, inc }) {
@@ -13,24 +14,24 @@ function NearPayBtn({ value, inc }) {
 			.from("transactions")
 			.insert([{ value }]);
 		setInfo(data[0]);
-
-		console.log(data[0]);
 	};
 
 	const handlePayment = (event) => {
-		console.log("here", event);
-		const oldevent = event.old;
-		const newevnt = event.new;
-		// inc();
+		if (event.eventType === "UPDATE") {
+			const oldevent = event.old;
+			const newevnt = event.new;
+			if (newevnt.status) {
+				showAlert("Transaction Successfull!!!");
+				inc();
+			}
+		}
 	};
 	useEffect(() => {
-		console.log("here", info);
 		if (info) {
 			mySubscription = supabase
 				.from(`transactions:id=eq.${info.id}`)
 				.on("*", handlePayment)
 				.subscribe();
-			console.log(mySubscription);
 		}
 		return () => mySubscription?.unsubscribe();
 	}, [info]);

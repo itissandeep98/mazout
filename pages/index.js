@@ -35,6 +35,7 @@ function Index({ wallet, near }) {
 				.update({
 					user: account_id,
 					status: true,
+					txn: result.transaction.hash,
 					updated_at: new Date().toISOString().slice(0, 23).replace("T", " "),
 				})
 				.match({ id: uniqueID });
