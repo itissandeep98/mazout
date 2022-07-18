@@ -50,7 +50,7 @@ function QRReader() {
 			<button
 				type="button"
 				onClick={() => setCameraStatus(!cameraStatus)}
-				className="text-cyan-700 hover:text-white block mt-6   transition duration-200 ease-in    font-medium rounded-full text-sm px-5 py-2.5 border border-cyan-700  hover:bg-cyan-700 "
+				className="text-cyan-700 z-10 mt- hover:text-white block mt-6   transition duration-200 ease-in    font-medium rounded-full text-sm px-5 py-2.5 border border-cyan-700  hover:bg-cyan-700 "
 			>
 				Scan QR Code
 			</button>

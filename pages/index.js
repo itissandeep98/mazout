@@ -55,8 +55,8 @@ function Index({ wallet, near }) {
 
 	return (
 		<div className="bg-[#cbd18f] text-black px-20 py-10 w-full rounded-xl relative font-poppins">
-			<div className="absolute left-0 top-0">
-				<Image src="/logo1.png" height="90" width="200" alt="mazout" />
+			<div className="absolute left-0 top-0 ">
+				<Image src="/logo1.png" height="50" width="150" alt="mazout" />
 			</div>
 			{wallet?.isSignedIn() && (
 				<div>
