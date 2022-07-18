@@ -1,12 +1,10 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import Slide1 from "../Components/Slides/Slide1";
 import Slide2 from "../Components/Slides/Slide2";
 import Slide3 from "../Components/Slides/Slide3";
 
-function Home({ wallet, near }) {
-	const router = useRouter();
+function Home() {
 	const [index, setIndex] = useState(0);
 
 	const slides = [

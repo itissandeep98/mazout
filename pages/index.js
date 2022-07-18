@@ -82,20 +82,24 @@ function Index({ wallet, near }) {
 
 	return (
 		<div className="bg-[#cbd18f] text-black px-20 py-10 w-full rounded-xl relative font-poppins">
+			{cameraStatus && (
+				<div className="h-60 w-60">
+					<QrReader
+						onResult={(result, error) => {
+							if (!!result) {
+								setCameraStatus(false);
+								window.open(result?.text, "_blank")?.focus();
+							}
+						}}
+						style={{ width: "100%" }}
+						constraints={{ facingMode: "environment" }}
+					/>
+				</div>
+			)}
 			{wallet?.isSignedIn() && (
 				<div>
-					{cameraStatus && (
-						<div className="h-60 w-60">
-							<QrReader
-								onResult={(result, error) => {
-									if (!!result) {
-										window.open(result?.text, "_blank")?.focus();
-									}
-								}}
-								style={{ width: "100%" }}
-							/>
-						</div>
-					)}
+					{cameraStatus}
+
 					{value && (
 						<>
 							{status ? (
@@ -138,13 +142,7 @@ function Index({ wallet, near }) {
 							)}
 						</>
 					)}
-					<button
-						type="button"
-						onClick={() => setCameraStatus(!cameraStatus)}
-						className="text-cyan-700 hover:text-white block mt-6   transition duration-200 ease-in    font-medium rounded-full text-sm px-5 py-2.5 border border-cyan-700  hover:bg-cyan-700 "
-					>
-						Toggle Camera
-					</button>
+
 					<button
 						type="button"
 						onClick={signOut}
@@ -154,6 +152,13 @@ function Index({ wallet, near }) {
 					</button>
 				</div>
 			)}
+			<button
+				type="button"
+				onClick={() => setCameraStatus(!cameraStatus)}
+				className="text-cyan-700 hover:text-white block mt-6   transition duration-200 ease-in    font-medium rounded-full text-sm px-5 py-2.5 border border-cyan-700  hover:bg-cyan-700 "
+			>
+				Toggle Camera
+			</button>
 		</div>
 	);
 }
