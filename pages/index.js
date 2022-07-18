@@ -1,12 +1,10 @@
-import { KeyPair, utils } from "near-api-js";
-import Link from "next/link";
+import { KeyPair } from "near-api-js";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { QrReader } from "react-qr-reader";
-import { showAlert } from "../Components/Alert";
+import QRReader from "../Components/QRReader";
 import Receipt from "../Components/Receipt";
-import { baseURL, explorerUrl, PayoutAccount } from "../config/constants";
-import { supabase } from "../config/supabase";
+import { baseURL } from "../config/constants";
 
 const PENDING_ACCESS_KEY_PREFIX = "pending_key";
 
@@ -57,42 +55,24 @@ function Index({ wallet, near }) {
 
 	return (
 		<div className="bg-[#cbd18f] text-black px-20 py-10 w-full rounded-xl relative font-poppins">
-			{cameraStatus && (
-				<div className="h-60 w-60">
-					<QrReader
-						onResult={(result, error) => {
-							if (!!result) {
-								setCameraStatus(false);
-								window.open(result?.text, "_blank")?.focus();
-							}
-						}}
-						style={{ width: "100%" }}
-						constraints={{ facingMode: "environment" }}
-					/>
-				</div>
-			)}
+			<div className="absolute left-0 top-0">
+				<Image src="/logo1.png" height="90" width="200" alt="mazout" />
+			</div>
 			{wallet?.isSignedIn() && (
 				<div>
 					{value && (
 						<Receipt near={near} account_id={account_id} value={value} />
 					)}
-
 					<button
 						type="button"
 						onClick={signOut}
-						className="text-red-700 hover:text-white block mt-6   transition duration-200 ease-in    font-medium rounded-full text-sm px-5 py-2.5 border border-red-700  hover:bg-red-700 "
+						className="text-red-700 hover:text-white block mt-6 absolute bottom-0 right-0 m-4   transition duration-200 ease-in    font-medium rounded-full text-sm px-5 py-2.5 border border-red-700  hover:bg-red-700 "
 					>
 						Sign out
 					</button>
 				</div>
 			)}
-			<button
-				type="button"
-				onClick={() => setCameraStatus(!cameraStatus)}
-				className="text-cyan-700 hover:text-white block mt-6   transition duration-200 ease-in    font-medium rounded-full text-sm px-5 py-2.5 border border-cyan-700  hover:bg-cyan-700 "
-			>
-				Toggle Camera
-			</button>
+			<QRReader />
 		</div>
 	);
 }

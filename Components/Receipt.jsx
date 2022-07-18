@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { baseURL, explorerUrl, PayoutAccount } from "../config/constants";
-import { KeyPair, utils } from "near-api-js";
-import { supabase } from "../config/supabase";
-import { showAlert } from "./Alert";
+import { utils } from "near-api-js";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { explorerUrl, PayoutAccount } from "../config/constants";
+import { supabase } from "../config/supabase";
+import { showAlert } from "./Alert";
 
 function Receipt({ near, account_id, value }) {
 	const [account, setaccount] = useState(null);
@@ -105,7 +105,7 @@ function Receipt({ near, account_id, value }) {
 			) : (
 				<>
 					<div className="  items-center justify-center flex cursor-pointer text-center ">
-						<h1 className="text-3xl mr-2">Your Total is {value}</h1>
+						<h1 className="text-3xl mr-2">Your total is {value}</h1>
 
 						<Image src="/near.png" height="20" width="50" alt="near" />
 					</div>
@@ -164,7 +164,14 @@ function Receipt({ near, account_id, value }) {
 									</th>
 									<td className="py-4 px-6  ">
 										<div className=" font-semibold w-20 p-2  border-t border-black">
-											{value}
+											<p className="mr-2 inline">{value}</p>
+											<Image
+												src="/near.png"
+												height="12"
+												width="30"
+												alt="near"
+												className="ml-2"
+											/>
 										</div>
 									</td>
 								</tr>

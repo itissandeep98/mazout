@@ -1,4 +1,3 @@
-import React from "react";
 import Charging from "../Charging";
 
 function Slide3() {
