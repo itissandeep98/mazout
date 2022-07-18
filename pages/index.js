@@ -2,10 +2,11 @@ import { KeyPair, utils } from "near-api-js";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { QrReader } from "react-qr-reader";
 import { showAlert } from "../Components/Alert";
+import Receipt from "../Components/Receipt";
 import { baseURL, explorerUrl, PayoutAccount } from "../config/constants";
 import { supabase } from "../config/supabase";
-import { QrReader } from "react-qr-reader";
 
 const PENDING_ACCESS_KEY_PREFIX = "pending_key";
 
@@ -13,38 +14,12 @@ function Index({ wallet, near }) {
 	const router = useRouter();
 	const { value, uniqueID } = router.query;
 	const account_id = wallet?.account()?.accountId;
-	const [status, setStatus] = useState(false);
-	const [transaction, setTransaction] = useState(null);
+
 	const [cameraStatus, setCameraStatus] = useState(false);
 
 	const signOut = async () => {
 		wallet.signOut();
 		router.push("/");
-	};
-
-	const sendTokens = async () => {
-		try {
-			const senderAccount = await near.account(account_id);
-			const amount = utils.format.parseNearAmount(value);
-			showAlert("Sending tokens...");
-			const result = await senderAccount.sendMoney(PayoutAccount, amount);
-			showAlert("Transaction sent successfully", "success");
-			setStatus(true);
-			setTransaction(result.transaction);
-			console.log(result);
-			const { data, error } = await supabase
-				.from("transactions")
-				.update({
-					user: account_id,
-					status: true,
-					txn: result.transaction.hash,
-					updated_at: new Date().toISOString().slice(0, 23).replace("T", " "),
-				})
-				.match({ id: uniqueID });
-		} catch (error) {
-			console.log(error);
-			showAlert(error.message, "error");
-		}
 	};
 
 	const loginFullAccess = async (options) => {
@@ -98,49 +73,8 @@ function Index({ wallet, near }) {
 			)}
 			{wallet?.isSignedIn() && (
 				<div>
-					{cameraStatus}
-
 					{value && (
-						<>
-							{status ? (
-								<>
-									<p className="text-[#3a6b35] text-3xl font-bold">
-										Transaction successfull, Now you can use the vehicle ;)
-									</p>
-									<Link href={`${explorerUrl}/${transaction.hash}`}>
-										<a
-											target="_blank"
-											rel="noopener noreferrer"
-											className="text-xs mt-4 text-gray-500"
-										>
-											View transaction details
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												className="h-4 w-4 inline-block"
-												fill="none"
-												viewBox="0 0 24 24"
-												stroke="currentColor"
-												strokeWidth={2}
-											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-												/>
-											</svg>
-										</a>
-									</Link>
-								</>
-							) : (
-								<button
-									type="button"
-									onClick={sendTokens}
-									className="transition duration-200 ease-in  text-xl font-extrabold px-3 border-[#3a6b35] border-2 py-2 rounded-xl hover:bg-[#3a6b35] hover:text-white   "
-								>
-									Click to Pay {value} NEAR to Mazout Electric
-								</button>
-							)}
-						</>
+						<Receipt near={near} account_id={account_id} value={value} />
 					)}
 
 					<button
