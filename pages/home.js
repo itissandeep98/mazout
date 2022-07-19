@@ -14,7 +14,7 @@ function Home() {
 	];
 
 	return (
-		<div className="bg-[#cbd18f] text-black px-20 py-10 w-full rounded-xl relative font-poppins">
+		<div className="bg-gray-300 text-black px-20 py-10 w-full rounded-xl relative font-poppins">
 			<div className="absolute right-0 top-0">
 				<Image
 					src="/logo1.png"
