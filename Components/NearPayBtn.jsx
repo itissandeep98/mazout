@@ -48,13 +48,14 @@ function NearPayBtn({ value, inc }) {
 			{url && <>{show && <QRModal url={url} setShow={setShow} />}</>}
 
 			<div
-				className=" font-semibold  items-center flex cursor-pointer "
+				className=" font-semibold  text-center cursor-pointer "
 				onClick={() => {
 					addData();
 					setShow(true);
 				}}
 			>
 				{value}
+				<br />
 				<Image src="/near.png" height="20" width="50" alt="near" />
 			</div>
 		</>

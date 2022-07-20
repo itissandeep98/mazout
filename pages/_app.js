@@ -5,7 +5,7 @@ import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
 	return (
-		<div className="text-white h-screen items-center flex px-3 lg:px-40 bg-black ">
+		<div className=" h-screen items-center flex px-3 lg:px-40 bg-gradient ">
 			<Meta />
 			<LayoutWrapper {...pageProps}>
 				<Component {...pageProps} />

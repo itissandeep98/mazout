@@ -1,6 +1,6 @@
 import Charging from "../Charging";
 
-function Slide3({ inc }) {
+function Charge({ inc }) {
 	return (
 		<div className="">
 			<h1 className="text-3xl font-extrabold mb-10">Charging your EV </h1>
@@ -35,4 +35,4 @@ function Slide3({ inc }) {
 	);
 }
 
-export default Slide3;
+export default Charge;
