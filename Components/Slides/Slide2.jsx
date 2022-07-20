@@ -29,13 +29,13 @@ function Slide2({ inc }) {
 			<h1 className="text-3xl font-extrabold mb-10">Charge up your EV</h1>
 			<p className="font-semibold ">Select among one of the quick plans:</p>
 
-			<div className="overflow-x-auto relative w-full py-2  sm:rounded-lg  bg-[#cbd18f] my-4 rounded-2xl">
+			<div className="overflow-x-auto relative w-full py-2  sm:rounded-lg bg-gray-100 shadow-lg my-4 rounded-2xl">
 				<table className="w-full text-sm text-left ">
 					<tbody>
 						{plans.map((item, index) => (
 							<tr key={index} className="">
 								<th className=" px-6  whitespace-nowrap   ">
-									<div className="bg-[#3a6b35] text-[#e3b448] w-9/12 rounded-full px-6 py-2 truncate">
+									<div className="bg-gray-300 w-9/12 rounded-full px-6 py-2 truncate">
 										{item.key}
 									</div>
 								</th>

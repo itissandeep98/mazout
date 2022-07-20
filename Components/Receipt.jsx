@@ -6,7 +6,7 @@ import { explorerUrl, PayoutAccount } from "../config/constants";
 import { supabase } from "../config/supabase";
 import { showAlert } from "./Alert";
 
-function Receipt({ near, account_id, value }) {
+function Receipt({ near, account_id, value, uniqueID }) {
 	const [account, setaccount] = useState(null);
 	const [status, setStatus] = useState(false);
 	const [transaction, setTransaction] = useState(null);
@@ -104,8 +104,8 @@ function Receipt({ near, account_id, value }) {
 				</div>
 			) : (
 				<>
-					<div className="  items-center justify-center flex cursor-pointer text-center ">
-						<h1 className="text-3xl mr-2">Your total is {value}</h1>
+					<div className="flex  items-center justify-center  cursor-pointer ">
+						<h1 className="text-3xl mt-4">Your total is {value}</h1>
 
 						<Image src="/near.png" height="20" width="50" alt="near" />
 					</div>
@@ -115,10 +115,10 @@ function Receipt({ near, account_id, value }) {
 						</p>
 						<Image src="/near.png" height="12" width="30" alt="near" />
 					</div>
-					<div>
-						<table className="w-full text-sm  bg-[#3a6b35] text-[#e3b448] mt-4 rounded-2xl  ">
+					<div className="flex justify-center px-2">
+						<table className="  w-full text-sm  bg-gray-200 shadow-xl mt-4 rounded-2xl  ">
 							<tbody>
-								<tr className=" items-center flex w-full justify-between px-10">
+								<tr className=" items-center flex  justify-between md:px-10">
 									<th className="py-2 px-6 font-bold items-center flex  whitespace-nowrap uppercase  ">
 										<div>
 											Electricity charges
@@ -132,7 +132,7 @@ function Receipt({ near, account_id, value }) {
 										<div className=" font-semibold w-20 p-2 ">0.68</div>
 									</td>
 								</tr>
-								<tr className=" items-center flex w-full justify-between px-10">
+								<tr className=" items-center flex w-full justify-between md:px-10">
 									<th className="py-2 px-6 font-bold items-center flex  whitespace-nowrap uppercase  ">
 										Maintenance charges
 									</th>
@@ -140,7 +140,7 @@ function Receipt({ near, account_id, value }) {
 										<div className=" font-semibold w-20 p-2 ">0.68</div>
 									</td>
 								</tr>
-								<tr className=" items-center flex w-full justify-between px-10">
+								<tr className=" items-center flex w-full justify-between md:px-10">
 									<th className="py-2 px-6 font-bold items-center flex  whitespace-nowrap uppercase  ">
 										Taxes & charges
 									</th>
@@ -148,7 +148,7 @@ function Receipt({ near, account_id, value }) {
 										<div className=" font-semibold w-20 p-2 ">0.68</div>
 									</td>
 								</tr>
-								<tr className=" items-center flex w-full justify-between px-10">
+								<tr className=" items-center flex w-full justify-between md:px-10">
 									<th className="py-2 px-6 font-bold items-center flex  whitespace-nowrap uppercase  ">
 										Discount
 									</th>
@@ -179,13 +179,15 @@ function Receipt({ near, account_id, value }) {
 						</table>
 					</div>
 					<div>
-						<button
-							type="button"
-							onClick={sendTokens}
-							className="transition duration-200 ease-in mt-5  text-xl font-extrabold px-3 border-[#3a6b35] border-2 py-2 rounded-xl hover:bg-[#3a6b35] hover:text-white   "
-						>
-							Pay Now
-						</button>
+						{uniqueID && (
+							<button
+								type="button"
+								onClick={sendTokens}
+								className="transition duration-200 ease-in mt-5  text-xl font-extrabold px-3 border-[#3a6b35] border-2 py-2 rounded-xl hover:bg-[#3a6b35] hover:text-white   "
+							>
+								Pay Now
+							</button>
+						)}
 					</div>
 				</>
 			)}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { baseURL } from "../config/constants";
 import { supabase } from "../config/supabase";
 import { showAlert } from "./Alert";
 import QRModal from "./QRModal";
@@ -7,6 +8,8 @@ import QRModal from "./QRModal";
 function NearPayBtn({ value, inc }) {
 	const [show, setShow] = useState(false);
 	const [info, setInfo] = useState(null);
+	const [url, setUrl] = useState(null);
+
 	let mySubscription;
 
 	const addData = async () => {
@@ -28,6 +31,10 @@ function NearPayBtn({ value, inc }) {
 	};
 	useEffect(() => {
 		if (info) {
+			const tmp = new URL(baseURL);
+			tmp.searchParams.set("value", value);
+			tmp.searchParams.set("uniqueID", info?.id);
+			setUrl(tmp);
 			mySubscription = supabase
 				.from(`transactions:id=eq.${info.id}`)
 				.on("*", handlePayment)
@@ -38,6 +45,8 @@ function NearPayBtn({ value, inc }) {
 
 	return (
 		<>
+			{url && <>{show && <QRModal url={url} setShow={setShow} />}</>}
+
 			<div
 				className=" font-semibold  items-center flex cursor-pointer "
 				onClick={() => {
@@ -48,7 +57,6 @@ function NearPayBtn({ value, inc }) {
 				{value}
 				<Image src="/near.png" height="20" width="50" alt="near" />
 			</div>
-			{show && <QRModal value={value} uniqueID={info?.id} setShow={setShow} />}
 		</>
 	);
 }

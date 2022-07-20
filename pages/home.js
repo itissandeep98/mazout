@@ -10,7 +10,7 @@ function Home() {
 	const slides = [
 		<Slide1 key={1} inc={() => setIndex(index + 1)} />,
 		<Slide2 key={2} inc={() => setIndex(index + 1)} />,
-		<Slide3 key={3} />,
+		<Slide3 key={3} inc={() => setIndex(0)} />,
 	];
 
 	return (
@@ -21,7 +21,7 @@ function Home() {
 					height="50"
 					width="150"
 					alt="mazout"
-					onClick={() => setIndex(0)}
+					onClick={() => setIndex((index + 1) % 3)}
 				/>
 			</div>
 			{slides[index]}
