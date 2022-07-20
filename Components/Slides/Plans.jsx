@@ -106,7 +106,7 @@ function Plans({ inc }) {
 						<p>Select from Quick charge </p>
 					</button>
 					<div className=" bg-slate-100 hover:shadow-xl  transition duration-200 ease-in p-4 py-6 rounded-xl ">
-						<div className="relative z-0  group ">
+						<div className="relative z-0  group w-40 ">
 							<input
 								type="number"
 								name="floating_soc"
@@ -114,18 +114,20 @@ function Plans({ inc }) {
 								placeholder=" "
 								required
 								value={soc}
+								min={0}
+								max={100}
 								onChange={(e) => setSoc(parseInt(e.target.value))}
 							/>
 							<label
 								htmlFor="floating_soc"
 								className="peer-focus:font-medium absolute text-sm  text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
 							>
-								Charge
+								Charge (in %)
 							</label>
 						</div>
 					</div>
 					<div className=" bg-slate-100 p-4 py-6 rounded-xl hover:shadow-xl  transition duration-200 ease-in">
-						<div className="relative z-0  group">
+						<div className="relative z-0  group  w-40">
 							<input
 								type="number"
 								name="floating_duration"
@@ -133,18 +135,19 @@ function Plans({ inc }) {
 								placeholder=" "
 								required
 								value={duration}
+								min={0}
 								onChange={(e) => setDuration(parseInt(e.target.value))}
 							/>
 							<label
 								htmlFor="floating_duration"
 								className="peer-focus:font-medium absolute text-sm  text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
 							>
-								Duration
+								Duration (in mins)
 							</label>
 						</div>
 					</div>
 					<div className=" bg-slate-100 p-4 py-6 rounded-xl hover:shadow-xl  transition duration-200 ease-in">
-						<div className="relative z-0  group">
+						<div className="relative z-0  group  w-40">
 							<input
 								type="number"
 								name="floating_range"
@@ -152,13 +155,14 @@ function Plans({ inc }) {
 								placeholder=" "
 								required
 								value={range}
+								min={0}
 								onChange={(e) => setRange(parseInt(e.target.value))}
 							/>
 							<label
 								htmlFor="floating_range"
 								className="peer-focus:font-medium absolute text-sm  text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
 							>
-								Range
+								Range (in km)
 							</label>
 						</div>
 					</div>

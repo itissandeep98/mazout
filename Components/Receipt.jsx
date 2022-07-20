@@ -183,7 +183,7 @@ function Receipt({ near, account_id, value, uniqueID }) {
 							<button
 								type="button"
 								onClick={sendTokens}
-								className="transition duration-200 ease-in mt-5  text-xl font-extrabold px-3 border-[#3a6b35] border-2 py-2 rounded-xl hover:bg-[#3a6b35] hover:text-white   "
+								className="transition duration-200 ease-in mt-5  text-xl font-extrabold px-3 border-[#6BA3F7] border-2 py-2 rounded-xl hover:bg-[#6BA3F7] hover:text-white   "
 							>
 								Pay Now
 							</button>

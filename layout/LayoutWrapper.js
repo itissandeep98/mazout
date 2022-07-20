@@ -1,21 +1,29 @@
-import { WalletConnection } from "near-api-js";
+import { connect, keyStores, WalletConnection } from "near-api-js";
 import React, { useEffect, useState } from "react";
-import { NearConfig } from "../Components/NearConfig";
+
+const NearConfig = async () => {
+	const config = {
+		networkId: "testnet",
+		keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+		nodeUrl: "https://rpc.testnet.near.org",
+		walletUrl: "https://wallet.testnet.near.org",
+		helperUrl: "https://helper.testnet.near.org",
+		explorerUrl: "https://explorer.testnet.near.org",
+	};
+	return await connect(config);
+};
 
 const LayoutWrapper = (params) => {
 	const { children, ...props } = params;
 
 	const [wallet, setWallet] = useState(null);
 	const [near, setNear] = useState(null);
-	useEffect(() => {
-		const setup = async () => {
-			setNear(await NearConfig());
-		};
-		setup();
-	}, []);
+
 	useEffect(() => {
 		if (near) {
 			setWallet(new WalletConnection(near));
+		} else {
+			NearConfig().then((config) => setNear(config));
 		}
 	}, [near]);
 
