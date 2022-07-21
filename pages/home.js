@@ -8,12 +8,7 @@ function Home() {
 	const [info, setInfo] = useState(null);
 
 	const slides = [
-		<Info
-			key={1}
-			inc={() => setIndex(index + 1)}
-			info={info}
-			setInfo={setInfo}
-		/>,
+		<Info key={1} inc={() => setIndex(index + 1)} setInfo={setInfo} />,
 		<Charge key={2} inc={() => setIndex(0)} info={info} />,
 	];
 

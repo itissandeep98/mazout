@@ -1,13 +1,13 @@
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { baseURL } from "../config/constants";
 import { supabase } from "../config/supabase";
 import { showAlert } from "./Alert";
 import QRModal from "./QRModal";
 
-function NearPayBtn({ id, value, inc, addData }) {
+function NearPayBtn({ value, inc, addData, children, className, setInfo }) {
 	const [show, setShow] = useState(false);
 	const [url, setUrl] = useState(null);
+	const [id, setId] = useState(null);
 
 	let mySubscription;
 
@@ -15,6 +15,7 @@ function NearPayBtn({ id, value, inc, addData }) {
 		if (event.eventType === "UPDATE") {
 			const oldevent = event.old;
 			const newevnt = event.new;
+			setInfo(newevnt);
 			if (newevnt.status) {
 				showAlert("Transaction Successfull!!!");
 				inc();
@@ -41,15 +42,13 @@ function NearPayBtn({ id, value, inc, addData }) {
 			{show && <QRModal url={url?.href} setShow={setShow} />}
 
 			<div
-				className=" font-semibold  text-center cursor-pointer "
-				onClick={() => {
-					addData();
+				className={className}
+				onClick={async () => {
+					setId(await addData());
 					setShow(true);
 				}}
 			>
-				{value}
-				<br />
-				<Image src="/near.png" height="20" width="50" alt="near" />
+				{children}
 			</div>
 		</>
 	);

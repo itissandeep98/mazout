@@ -1,9 +1,9 @@
-import { info } from "autoprefixer";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { supabase } from "../../config/supabase";
 import NearPayBtn from "../NearPayBtn";
 
-function Plans({ inc, info, setInfo }) {
+function Plans({ inc, setInfo }) {
 	const [soc, setSoc] = useState(0);
 	const [duration, setDuration] = useState(0);
 	const [range, setRange] = useState(0);
@@ -15,6 +15,7 @@ function Plans({ inc, info, setInfo }) {
 			.from("transactions")
 			.insert([{ value }]);
 		setInfo(data[0]);
+		return data[0].id;
 	};
 
 	useEffect(() => {
@@ -49,33 +50,36 @@ function Plans({ inc, info, setInfo }) {
 						Quick Plans
 					</div>
 					{plans.map((item, index) => (
-						<div
+						<NearPayBtn
+							value={item.value}
+							inc={inc}
 							key={index}
+							setInfo={setInfo}
+							addData={() => addData(item.value)}
 							className="relative bg-gray-100 w-60 m-2 p-3 rounded-xl cursor-pointer hover:shadow-2xl transition duration-200 ease-in "
 						>
-							<div className="">
-								Upto{" "}
-								<span className="text-[#B0DD8D] text-lg font-bold">
-									{item.charge}%
-								</span>{" "}
-								in <br />
-								<span className="text-[#6BA3F7] text-lg font-bold">
-									{item.mins} mins{" "}
-								</span>{" "}
-								for <br />
-								<span className="text-[#6BA3F7] text-lg font-bold">
-									{item.dist} km{" "}
-								</span>
+							<div>
+								<div className="">
+									Upto{" "}
+									<span className="text-[#B0DD8D] text-lg font-bold">
+										{item.charge}%
+									</span>{" "}
+									in <br />
+									<span className="text-[#6BA3F7] text-lg font-bold">
+										{item.mins} mins{" "}
+									</span>{" "}
+									for <br />
+									<span className="text-[#6BA3F7] text-lg font-bold">
+										{item.dist} km{" "}
+									</span>
+								</div>
+								<div className="absolute bottom-2 right-2 text-gray-400 ">
+									{item.value}
+									<br />
+									<Image src="/near.png" height="20" width="50" alt="near" />
+								</div>
 							</div>
-							<div className="absolute bottom-2 right-2 text-gray-400 ">
-								<NearPayBtn
-									id={info?.id}
-									value={item.value}
-									inc={inc}
-									addData={() => addData(item.value)}
-								/>
-							</div>
-						</div>
+						</NearPayBtn>
 					))}
 					<button
 						className="text-xs w-26 text-gray-400 hover:text-sky-300 p-3 group  flex flex-row items-center  "
@@ -183,11 +187,15 @@ function Plans({ inc, info, setInfo }) {
 					</div>
 					<div className=" font-semibold text-xl  items-center flex  ">
 						<NearPayBtn
-							id={info?.id}
 							value={amount}
 							inc={inc}
+							setInfo={setInfo}
 							addData={() => addData(amount)}
-						/>
+						>
+							{amount}
+							<br />
+							<Image src="/near.png" height="20" width="50" alt="near" />
+						</NearPayBtn>
 					</div>
 					<div className="rotate-90 shadow-lg -mr-14 text-center bg-gradient-to-r from-sky-300 to-sky-500 text-white font-medium text-xl px-2 py-3 rounded-b w-40">
 						Custom Charge

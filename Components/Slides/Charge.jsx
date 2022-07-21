@@ -1,11 +1,10 @@
 import Charging from "../Charging";
 
 function Charge({ inc, info }) {
-	console.log(info);
 	const details = [
 		{
 			key: "Order ID",
-			value: "aksjbfa21n",
+			value: info?.id,
 		},
 		{
 			key: "Vehicle",
@@ -25,7 +24,7 @@ function Charge({ inc, info }) {
 		},
 		{
 			key: "Payment",
-			value: "0.8 Near",
+			value: `${info.value} Near`,
 		},
 	];
 	return (
@@ -45,15 +44,15 @@ function Charge({ inc, info }) {
 					</button>
 				</div>
 			</div>
-			<div>
+			<div className=" w-3/5 lg:w-5/12 ">
 				<h2 className="text-3xl font-bold text-center"> Ongoing Order</h2>
 				{details.map((item, index) => (
 					<div
 						key={index}
-						className=" bg-slate-100 my-3  p-3 rounded-xl w-80 flex justify-between"
+						className=" bg-slate-100 my-3  p-3 rounded-xl w-full flex justify-between"
 					>
 						<p className=" font-bold">{item.key}</p>
-						<p className="text-slate-400">{item.value}</p>
+						<p className="text-slate-400 text-clip">{item.value}</p>
 					</div>
 				))}
 			</div>
