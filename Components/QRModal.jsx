@@ -24,7 +24,11 @@ function QRModal({ setShow, url }) {
 						</svg>
 					</button>
 					<div className="p-6 h-96 w-full">
-						<QRCode value={url.href} />
+						{url ? (
+							<QRCode value={url} />
+						) : (
+							<div className="text-center"> Generating QR Code... </div>
+						)}
 					</div>
 				</div>
 			</div>

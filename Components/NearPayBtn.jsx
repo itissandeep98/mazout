@@ -5,19 +5,11 @@ import { supabase } from "../config/supabase";
 import { showAlert } from "./Alert";
 import QRModal from "./QRModal";
 
-function NearPayBtn({ value, inc }) {
+function NearPayBtn({ id, value, inc, addData }) {
 	const [show, setShow] = useState(false);
-	const [info, setInfo] = useState(null);
 	const [url, setUrl] = useState(null);
 
 	let mySubscription;
-
-	const addData = async () => {
-		const { data, error } = await supabase
-			.from("transactions")
-			.insert([{ value }]);
-		setInfo(data[0]);
-	};
 
 	const handlePayment = (event) => {
 		if (event.eventType === "UPDATE") {
@@ -29,23 +21,24 @@ function NearPayBtn({ value, inc }) {
 			}
 		}
 	};
+
 	useEffect(() => {
-		if (info) {
+		if (id) {
 			const tmp = new URL(baseURL);
 			tmp.searchParams.set("value", value);
-			tmp.searchParams.set("uniqueID", info?.id);
+			tmp.searchParams.set("uniqueID", id);
 			setUrl(tmp);
 			mySubscription = supabase
-				.from(`transactions:id=eq.${info.id}`)
+				.from(`transactions:id=eq.${id}`)
 				.on("*", handlePayment)
 				.subscribe();
 		}
 		return () => mySubscription?.unsubscribe();
-	}, [info]);
+	}, [id]);
 
 	return (
 		<>
-			{url && <>{show && <QRModal url={url} setShow={setShow} />}</>}
+			{show && <QRModal url={url?.href} setShow={setShow} />}
 
 			<div
 				className=" font-semibold  text-center cursor-pointer "

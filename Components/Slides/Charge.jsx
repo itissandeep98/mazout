@@ -1,24 +1,38 @@
 import Charging from "../Charging";
 
-function Charge({ inc }) {
+function Charge({ inc, info }) {
+	console.log(info);
+	const details = [
+		{
+			key: "Order ID",
+			value: "aksjbfa21n",
+		},
+		{
+			key: "Vehicle",
+			value: "BMW",
+		},
+		{
+			key: "Capacity",
+			value: "23 Ah",
+		},
+		{
+			key: "Battery Health",
+			value: "Good",
+		},
+		{
+			key: "Plan",
+			value: "Upto 100% for 226 km",
+		},
+		{
+			key: "Payment",
+			value: "0.8 Near",
+		},
+	];
 	return (
-		<div className="">
-			<h1 className="text-3xl font-extrabold mb-10">Charging your EV </h1>
-			<div className="flex flex-row  justify-between items-center">
-				<div className="w-40 flex flex-col space-y-8">
-					<p className="font-semibold ">Your charging has begun!</p>
-					<p className="font-semibold ">
-						You will be notified once your vehicle is charged
-					</p>
-
-					<p className="font-semibold ">Relax at nearby cafe!</p>
-
-					<p className="font-semibold ">
-						End Now if you wish to stall the charging
-					</p>
-				</div>
-				<div>
-					<Charging perc={90} />
+		<div className="  flex  justify-around pt-10  items-center">
+			<div className="flex flex-col ">
+				<div className=" mb-40">
+					<Charging />
 				</div>
 				<div className="text-center">
 					<p className="text-3xl font-extrabold">34 mins</p>
@@ -30,6 +44,18 @@ function Charge({ inc }) {
 						End Now
 					</button>
 				</div>
+			</div>
+			<div>
+				<h2 className="text-3xl font-bold text-center"> Ongoing Order</h2>
+				{details.map((item, index) => (
+					<div
+						key={index}
+						className=" bg-slate-100 my-3  p-3 rounded-xl w-80 flex justify-between"
+					>
+						<p className=" font-bold">{item.key}</p>
+						<p className="text-slate-400">{item.value}</p>
+					</div>
+				))}
 			</div>
 		</div>
 	);

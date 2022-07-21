@@ -5,10 +5,16 @@ import Charge from "../Components/Slides/Charge";
 
 function Home() {
 	const [index, setIndex] = useState(0);
+	const [info, setInfo] = useState(null);
 
 	const slides = [
-		<Info key={1} inc={() => setIndex(index + 1)} />,
-		<Charge key={2} inc={() => setIndex(0)} />,
+		<Info
+			key={1}
+			inc={() => setIndex(index + 1)}
+			info={info}
+			setInfo={setInfo}
+		/>,
+		<Charge key={2} inc={() => setIndex(0)} info={info} />,
 	];
 
 	return (

@@ -1,12 +1,22 @@
+import { info } from "autoprefixer";
 import { useEffect, useState } from "react";
+import { supabase } from "../../config/supabase";
 import NearPayBtn from "../NearPayBtn";
 
-function Plans({ inc }) {
+function Plans({ inc, info, setInfo }) {
 	const [soc, setSoc] = useState(0);
 	const [duration, setDuration] = useState(0);
 	const [range, setRange] = useState(0);
 	const [amount, setAmount] = useState(0);
 	const [showCustom, setShowCustom] = useState(false);
+
+	const addData = async (value) => {
+		const { data, error } = await supabase
+			.from("transactions")
+			.insert([{ value }]);
+		setInfo(data[0]);
+	};
+
 	useEffect(() => {
 		setAmount((soc / 10 + duration / 10 + range / 10).toFixed(2));
 	}, [soc, duration, range]);
@@ -58,7 +68,12 @@ function Plans({ inc }) {
 								</span>
 							</div>
 							<div className="absolute bottom-2 right-2 text-gray-400 ">
-								<NearPayBtn value={item.value} inc={inc} />
+								<NearPayBtn
+									id={info?.id}
+									value={item.value}
+									inc={inc}
+									addData={() => addData(item.value)}
+								/>
 							</div>
 						</div>
 					))}
@@ -167,7 +182,12 @@ function Plans({ inc }) {
 						</div>
 					</div>
 					<div className=" font-semibold text-xl  items-center flex  ">
-						<NearPayBtn value={amount} inc={inc} />
+						<NearPayBtn
+							id={info?.id}
+							value={amount}
+							inc={inc}
+							addData={() => addData(amount)}
+						/>
 					</div>
 					<div className="rotate-90 shadow-lg -mr-14 text-center bg-gradient-to-r from-sky-300 to-sky-500 text-white font-medium text-xl px-2 py-3 rounded-b w-40">
 						Custom Charge

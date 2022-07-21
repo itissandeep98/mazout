@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Plans from "./Plans";
 
-function Info({ inc }) {
+function Info({ inc, info, setInfo }) {
 	const healthData = [
 		{
 			key: "Charge",
@@ -60,7 +60,7 @@ function Info({ inc }) {
 					))}
 				</div>
 			</div>
-			<Plans inc={inc} />
+			<Plans inc={inc} info={info} setInfo={setInfo} />
 		</div>
 	);
 }
