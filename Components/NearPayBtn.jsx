@@ -1,27 +1,14 @@
 import { useEffect, useState } from "react";
 import { baseURL } from "../config/constants";
 import { supabase } from "../config/supabase";
-import { showAlert } from "./Alert";
 import QRModal from "./QRModal";
 
-function NearPayBtn({ value, inc, addData, children, className, setInfo }) {
+function NearPayBtn({ value, addData, handlePayment, className, children }) {
 	const [show, setShow] = useState(false);
 	const [url, setUrl] = useState(null);
 	const [id, setId] = useState(null);
 
 	let mySubscription;
-
-	const handlePayment = (event) => {
-		if (event.eventType === "UPDATE") {
-			const oldevent = event.old;
-			const newevnt = event.new;
-			setInfo(newevnt);
-			if (newevnt.status) {
-				showAlert("Transaction Successfull!!!");
-				inc();
-			}
-		}
-	};
 
 	useEffect(() => {
 		if (id) {
@@ -42,7 +29,7 @@ function NearPayBtn({ value, inc, addData, children, className, setInfo }) {
 			{show && <QRModal url={url?.href} setShow={setShow} />}
 
 			<div
-				className={className}
+				className={className + " cursor-pointer"}
 				onClick={async () => {
 					setId(await addData());
 					setShow(true);

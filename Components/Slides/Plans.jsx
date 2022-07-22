@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { supabase } from "../../config/supabase";
+import { showAlert } from "../Alert";
 import NearPayBtn from "../NearPayBtn";
 
 function Plans({ inc, setInfo }) {
@@ -16,6 +17,18 @@ function Plans({ inc, setInfo }) {
 			.insert([{ value }]);
 		setInfo(data[0]);
 		return data[0].id;
+	};
+
+	const handlePayment = (event) => {
+		if (event.eventType === "UPDATE") {
+			const oldevent = event.old;
+			const newevnt = event.new;
+			setInfo(newevnt);
+			if (newevnt.status) {
+				showAlert("Transaction Successfull!!!");
+				inc();
+			}
+		}
 	};
 
 	useEffect(() => {
@@ -45,18 +58,17 @@ function Plans({ inc, setInfo }) {
 	return (
 		<div>
 			{!showCustom ? (
-				<div className=" flex flex-row items-center justify-between overflow-hidden py-8  duration-700 ease-in-ou">
-					<div className="-rotate-90 shadow-lg text-center -ml-14 bg-gradient-to-r from-sky-300 to-sky-500 text-white font-medium text-xl px-2 py-3 rounded-b w-40">
+				<div className=" flex flex-row items-center justify-between overflow-hidden py-10 mt-10  duration-700 ease-in-ou">
+					<div className="-rotate-90 shadow-lg text-center -ml-14 bg-gradient duration-75 text-white font-medium text-xl px-2 py-3 rounded-b w-40">
 						Quick Plans
 					</div>
 					{plans.map((item, index) => (
 						<NearPayBtn
-							value={item.value}
-							inc={inc}
 							key={index}
-							setInfo={setInfo}
+							value={item.value}
 							addData={() => addData(item.value)}
-							className="relative bg-gray-100 w-60 m-2 p-3 rounded-xl cursor-pointer hover:shadow-2xl transition duration-200 ease-in "
+							handlePayment={handlePayment}
+							className="relative bg-gray-100 w-60 m-2 p-3 rounded-xl  hover:shadow-2xl transition duration-200 ease-in "
 						>
 							<div>
 								<div className="">
@@ -73,10 +85,10 @@ function Plans({ inc, setInfo }) {
 										{item.dist} km{" "}
 									</span>
 								</div>
-								<div className="absolute bottom-2 right-2 text-gray-400 ">
+								<div className="absolute bottom-2 right-2 text-gray-400  text-center">
 									{item.value}
 									<br />
-									<Image src="/near.png" height="20" width="50" alt="near" />
+									<Image src="/near.svg" height="20" width="50" alt="near" />
 								</div>
 							</div>
 						</NearPayBtn>
@@ -85,7 +97,9 @@ function Plans({ inc, setInfo }) {
 						className="text-xs w-26 text-gray-400 hover:text-sky-300 p-3 group  flex flex-row items-center  "
 						onClick={() => setShowCustom(true)}
 					>
-						<p>Create Your Custom Plan</p>
+						<p>
+							Create Your <br /> Custom Plan
+						</p>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							className="h-6 w-6  opacity-0 group-hover:opacity-100 inline transition duration-200 ease-in"
@@ -105,7 +119,7 @@ function Plans({ inc, setInfo }) {
 			) : (
 				<div className=" flex flex-row items-center justify-between py-10 mt-10 overflow-hidden  duration-700 ease-in-out">
 					<button
-						className="text-xs  w-24 text-gray-400 hover:text-sky-300 p-3 group flex flex-row items-center"
+						className="text-xs  w-26 text-gray-400  hover:text-sky-300 p-3 group flex flex-row items-center"
 						onClick={() => setShowCustom(false)}
 					>
 						<svg
@@ -122,14 +136,16 @@ function Plans({ inc, setInfo }) {
 								d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
 							/>
 						</svg>
-						<p>Select from Quick charge </p>
+						<p>
+							Select from <br /> Quick charge
+						</p>
 					</button>
-					<div className=" bg-slate-100 hover:shadow-xl  transition duration-200 ease-in p-4 py-6 rounded-xl ">
+					<div className=" bg-slate-100 hover:shadow-xl  transition duration-200 ease-in px-6 py-10 rounded-xl ">
 						<div className="relative z-0  group w-40 ">
 							<input
 								type="number"
 								name="floating_soc"
-								className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-gray-900 border-gray-600  focus:outline-none focus:ring-0  peer"
+								className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 appearance-none text-gray-900 border-gray-400  focus:outline-none focus:ring-0  peer"
 								placeholder=" "
 								required
 								value={soc}
@@ -139,18 +155,18 @@ function Plans({ inc, setInfo }) {
 							/>
 							<label
 								htmlFor="floating_soc"
-								className="peer-focus:font-medium absolute text-sm  text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+								className="peer-focus:font-medium absolute text-sm  text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
 							>
 								Charge (in %)
 							</label>
 						</div>
 					</div>
-					<div className=" bg-slate-100 p-4 py-6 rounded-xl hover:shadow-xl  transition duration-200 ease-in">
+					<div className=" bg-slate-100 hover:shadow-xl  transition duration-200 ease-in px-6 py-10 rounded-xl ">
 						<div className="relative z-0  group  w-40">
 							<input
 								type="number"
 								name="floating_duration"
-								className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-gray-900 border-gray-600  focus:outline-none focus:ring-0  peer"
+								className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-gray-900 border-gray-400  focus:outline-none focus:ring-0  peer"
 								placeholder=" "
 								required
 								value={duration}
@@ -159,18 +175,18 @@ function Plans({ inc, setInfo }) {
 							/>
 							<label
 								htmlFor="floating_duration"
-								className="peer-focus:font-medium absolute text-sm  text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+								className="peer-focus:font-medium absolute text-sm  text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
 							>
 								Duration (in mins)
 							</label>
 						</div>
 					</div>
-					<div className=" bg-slate-100 p-4 py-6 rounded-xl hover:shadow-xl  transition duration-200 ease-in">
+					<div className=" bg-slate-100 hover:shadow-xl  transition duration-200 ease-in px-6 py-10 rounded-xl ">
 						<div className="relative z-0  group  w-40">
 							<input
 								type="number"
 								name="floating_range"
-								className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-gray-900 border-gray-600  focus:outline-none focus:ring-0  peer"
+								className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-gray-900 border-gray-400  focus:outline-none focus:ring-0  peer"
 								placeholder=" "
 								required
 								value={range}
@@ -179,25 +195,24 @@ function Plans({ inc, setInfo }) {
 							/>
 							<label
 								htmlFor="floating_range"
-								className="peer-focus:font-medium absolute text-sm  text-gray-600 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+								className="peer-focus:font-medium absolute text-sm  text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
 							>
 								Range (in km)
 							</label>
 						</div>
 					</div>
-					<div className=" font-semibold text-xl  items-center flex  ">
+					<div className=" font-semibold text-xl   text-center">
 						<NearPayBtn
 							value={amount}
-							inc={inc}
-							setInfo={setInfo}
+							handlePayment={handlePayment}
 							addData={() => addData(amount)}
 						>
 							{amount}
 							<br />
-							<Image src="/near.png" height="20" width="50" alt="near" />
+							<Image src="/near.svg" height="20" width="50" alt="near" />
 						</NearPayBtn>
 					</div>
-					<div className="rotate-90 shadow-lg -mr-14 text-center bg-gradient-to-r from-sky-300 to-sky-500 text-white font-medium text-xl px-2 py-3 rounded-b w-40">
+					<div className="rotate-90 shadow-lg -mr-14 text-center bg-gradient text-white font-medium text-xl px-2 py-3 rounded-b w-40">
 						Custom Charge
 					</div>
 				</div>

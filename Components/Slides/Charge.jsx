@@ -24,7 +24,7 @@ function Charge({ inc, info }) {
 		},
 		{
 			key: "Payment",
-			value: `${info.value} Near`,
+			value: `${info?.value} Near`,
 		},
 	];
 	return (
@@ -38,7 +38,7 @@ function Charge({ inc, info }) {
 					<p>To Full Charge</p>
 					<button
 						onClick={inc}
-						className="text-white mt-10 bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+						className="text-red-700 hover:text-white mt-10 border border-red-700  hover:bg-red-700 transition duration-200 ease-in   focus:ring-4 focus:outline-none focus:ring-pink-200  font-medium rounded-lg text-sm px-5 py-2.5"
 					>
 						End Now
 					</button>

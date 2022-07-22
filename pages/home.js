@@ -14,9 +14,9 @@ function Home() {
 
 	return (
 		<div className="bg-gray-200 text-black  py-10 w-full rounded-xl relative font-poppins">
-			<div className="absolute right-0 top-0">
+			<div className="absolute right-0 top-0 m-4">
 				<Image
-					src="/logo1.png"
+					src="/logo1.svg"
 					height="50"
 					width="150"
 					alt="mazout"

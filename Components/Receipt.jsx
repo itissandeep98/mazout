@@ -73,7 +73,7 @@ function Receipt({ near, account_id, value, uniqueID }) {
 						<p className="text-[#3a6b35] text-2xl font-medium inline mr-2">
 							Updated Balance: {account?.balance}
 						</p>
-						<Image src="/near.png" height="20" width="50" alt="near" />
+						<Image src="/near.svg" height="20" width="50" alt="near" />
 					</div>
 					<Link href={`${explorerUrl}/${transaction?.hash}`}>
 						<a
@@ -107,13 +107,13 @@ function Receipt({ near, account_id, value, uniqueID }) {
 					<div className="flex  items-center justify-center  cursor-pointer ">
 						<h1 className="text-3xl mt-4">Your total is {value}</h1>
 
-						<Image src="/near.png" height="20" width="50" alt="near" />
+						<Image src="/near.svg" height="20" width="50" alt="near" />
 					</div>
 					<div className="items-center justify-end flex mt-3 border-b border-black py-3">
 						<p className="text-xs mr-1">
 							Current Balance is {account?.balance}
 						</p>
-						<Image src="/near.png" height="12" width="30" alt="near" />
+						<Image src="/near.svg" height="12" width="30" alt="near" />
 					</div>
 					<div className="flex justify-center px-2">
 						<table className="  w-full text-sm  bg-gray-200 shadow-xl mt-4 rounded-2xl  ">
@@ -166,7 +166,7 @@ function Receipt({ near, account_id, value, uniqueID }) {
 										<div className=" font-semibold w-20 p-2  border-t border-black">
 											<p className="mr-2 inline">{value}</p>
 											<Image
-												src="/near.png"
+												src="/near.svg"
 												height="12"
 												width="30"
 												alt="near"

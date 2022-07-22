@@ -21,7 +21,7 @@ function Charging() {
 				</symbol>
 			</svg>
 			<div className="box">
-				<div className="percent">
+				<div className="percent ">
 					<div className="percentNum" id="count">
 						{percent}
 					</div>
@@ -29,7 +29,7 @@ function Charging() {
 				</div>
 				<div
 					id="water"
-					className="water"
+					className="water "
 					style={{ transform: `translate(0,  ${100 - percent}%)` }}
 				>
 					<svg viewBox="0 0 560 20" className="water_wave water_wave_back">
