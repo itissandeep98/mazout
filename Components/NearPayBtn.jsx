@@ -8,9 +8,8 @@ function NearPayBtn({ value, addData, handlePayment, className, children }) {
 	const [url, setUrl] = useState(null);
 	const [id, setId] = useState(null);
 
-	let mySubscription;
-
 	useEffect(() => {
+		let mySubscription;
 		if (id) {
 			const tmp = new URL(baseURL);
 			tmp.searchParams.set("value", value);

@@ -28,4 +28,4 @@ jobs:
           yarn global add @layer0/cli@latest
       - name: publish package
         run: |
-          layer0 deploy --site=mazout.com --token=${{secrets.layer0DeployToken}}
+          layer0 deploy --site=locus.cf --token=${{secrets.layer0DeployToken}}
