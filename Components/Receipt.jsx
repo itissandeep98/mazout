@@ -53,38 +53,48 @@ function Receipt({ near, account_id, value, uniqueID }) {
 	return (
 		<div className="text-center font-semibold ">
 			{status ? (
-				<div className="flex flex-col justify-center items-center">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						className="h-60 w-60 fill-[#3a6b35]"
-						viewBox="0 0 20 20"
-						fill="currentColor"
-					>
-						<path
-							fillRule="evenodd"
-							d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-							clipRule="evenodd"
-						/>
-					</svg>
-					<p className="text-[#3a6b35] text-3xl font-bold">
-						Transaction successfull, Now you can use the vehicle ;){" "}
-					</p>
-					<div className=" my-6">
-						<p className="text-[#3a6b35] text-2xl font-medium inline mr-2">
-							Updated Balance: {account?.balance}
+				<div className="flex  flex-col items-center">
+					<div className="flex flex-col justify-center items-center bg-slate-200 my-10 p-4 rounded-lg sm:w-3/4 lg:w-1/2">
+						<div className="svg-box">
+							<svg className="circular green-stroke">
+								<circle
+									className="path"
+									cx="75"
+									cy="75"
+									r="50"
+									fill="none"
+									stroke-width="5"
+									stroke-miterlimit="10"
+								/>
+							</svg>
+							<svg className="checkmark green-stroke">
+								<g transform="matrix(0.79961,8.65821e-32,8.39584e-32,0.79961,-489.57,-205.679)">
+									<path
+										className="checkmark__check"
+										fill="none"
+										d="M616.306,283.025L634.087,300.805L673.361,261.53"
+									/>
+								</g>
+							</svg>
+						</div>
+						<p className=" text-2xl font-bold">
+							Transaction successfull, Now you can use the vehicle ;){" "}
 						</p>
-						<Image src="/near.svg" height="20" width="50" alt="near" />
+
+						<p className="text-xl mt-5 text-red-700">
+							You can now close this app
+						</p>
 					</div>
 					<Link href={`${explorerUrl}/${transaction?.hash}`}>
 						<a
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-xs mt-4 text-gray-500"
+							className="transition duration-200 sm:w-3/4 lg:w-1/2 ease-in mt-5 w-full  text-xl font-bold px-3 bg-[#6BA3F7]  py-2 rounded-lg hover:bg-[#2377f5] text-white   "
 						>
-							View transaction details
+							View Transaction Details
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								className="h-4 w-4 inline-block"
+								className="h-4 w-4 inline-block mx-2"
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke="currentColor"
@@ -98,98 +108,99 @@ function Receipt({ near, account_id, value, uniqueID }) {
 							</svg>
 						</a>
 					</Link>
-					<p className="text-2xl mt-5 text-red-700">
-						You can now close this app
-					</p>
-				</div>
-			) : (
-				<>
-					<div className="flex  items-center justify-center  cursor-pointer ">
-						<h1 className="text-3xl mt-4">Your total is {value}</h1>
-
-						<Image src="/near.svg" height="20" width="50" alt="near" />
-					</div>
-					<div className="items-center justify-end flex mt-3 border-b border-black py-3">
+					<div className="items-center justify-center text-slate-400 flex mt-3 py-3">
 						<p className="text-xs mr-1">
-							Current Balance is {account?.balance}
+							Updated Balance is {account?.balance}
 						</p>
 						<Image src="/near.svg" height="12" width="30" alt="near" />
 					</div>
-					<div className="flex justify-center px-2">
-						<table className="  w-full text-sm  bg-gray-200 shadow-xl mt-4 rounded-2xl  ">
-							<tbody>
-								<tr className=" items-center flex  justify-between md:px-10">
-									<th className="py-2 px-6 font-bold items-center flex  whitespace-nowrap uppercase  ">
-										<div>
-											Electricity charges
-											<br />
-											<p className="block text-[0.6rem] font-medium">
-												@ 0.0382 NEAR per unit
-											</p>
-										</div>
-									</th>
-									<td className="py-4 px-6  ">
-										<div className=" font-semibold w-20 p-2 ">0.68</div>
-									</td>
-								</tr>
-								<tr className=" items-center flex w-full justify-between md:px-10">
-									<th className="py-2 px-6 font-bold items-center flex  whitespace-nowrap uppercase  ">
-										Maintenance charges
-									</th>
-									<td className="py-4 px-6  ">
-										<div className=" font-semibold w-20 p-2 ">0.68</div>
-									</td>
-								</tr>
-								<tr className=" items-center flex w-full justify-between md:px-10">
-									<th className="py-2 px-6 font-bold items-center flex  whitespace-nowrap uppercase  ">
-										Taxes & charges
-									</th>
-									<td className="py-4 px-6  ">
-										<div className=" font-semibold w-20 p-2 ">0.68</div>
-									</td>
-								</tr>
-								<tr className=" items-center flex w-full justify-between md:px-10">
-									<th className="py-2 px-6 font-bold items-center flex  whitespace-nowrap uppercase  ">
-										Discount
-									</th>
-									<td className="py-4 px-6  ">
-										<div className=" font-semibold w-20 p-2 text-red-400">
-											- 0.68
-										</div>
-									</td>
-								</tr>
-								<tr className=" items-center flex w-full justify-between px-10 ">
-									<th className="py-2 px-6 font-bold items-center flex  whitespace-nowrap uppercase border-t border-black">
-										Total
-									</th>
-									<td className="py-4 px-6  ">
-										<div className=" font-semibold w-20 p-2  border-t border-black">
-											<p className="mr-2 inline">{value}</p>
-											<Image
-												src="/near.svg"
-												height="12"
-												width="30"
-												alt="near"
-												className="ml-2"
-											/>
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+				</div>
+			) : (
+				<div>
+					<div className="flex  items-center justify-center  cursor-pointer ">
+						<h1 className="text-3xl mt-10">Order Preview</h1>
 					</div>
+					<div className="flex justify-center">
+						<div className="flex flex-col justify-center sm:w-3/4 lg:w-1/2 space-y-5 bg-slate-200 mt-3 rounded-xl p-3 px-4 text-left ">
+							<div className="flex w-full items-center justify-between text-xs">
+								<p>Order ID</p>
+								<div className=" font-medium w-60 p-2 text-slate-400 text-right">
+									{uniqueID}
+								</div>
+							</div>
+							<div className="flex w-full items-center justify-between text-xs">
+								<p>Vehicle</p>
+								<div className=" font-medium w-60 p-2 text-slate-400 text-right ">
+									Sheldon Z2 DL8CD7684
+								</div>
+							</div>
+							<div className="flex w-full items-center justify-between text-xs">
+								<p>Plan</p>
+								<div className=" font-medium w-60 p-2 text-slate-400 text-right ">
+									Upto 100% for 226 km
+								</div>
+							</div>
+							<div className=" flex w-full items-center justify-between">
+								<p>Price Breakup</p>
+							</div>
+							<div className="flex w-full  items-center justify-between text-xs">
+								<p className="w-1/2 ">Electricity charges</p>
+								<div className=" font-medium w-60 p-2 text-slate-400 text-right ">
+									{(value * 0.53).toPrecision(2)}
+								</div>
+							</div>
+							<div className="flex w-full items-center justify-between text-xs">
+								<p className="w-1/2">Maintenance charges</p>
+								<div className=" font-medium w-60 p-2 text-slate-400 text-right ">
+									{(value * 0.3).toPrecision(2)}
+								</div>
+							</div>
+							<div className="flex w-full items-center justify-between text-xs">
+								<p className="w-1/2">Taxes & charges</p>{" "}
+								<div className=" font-medium w-60 p-2 text-slate-400 text-right ">
+									{(value * 0.18).toPrecision(2)}
+								</div>
+							</div>
+							<div className="flex w-full items-center justify-between text-xs">
+								<p>Discount</p>
+								<div className=" font-medium w-60 p-2  text-red-300 text-right">
+									- {(value * 0.01).toPrecision(2)}
+								</div>
+							</div>
+							<div className="flex w-full items-center justify-between">
+								<p> Net Total</p>
+								<div className=" font-medium w-60 p-2  text-right ">
+									<p className="mr-2 inline">{value}</p>
+									<Image
+										src="/near.svg"
+										height="12"
+										width="30"
+										alt="near"
+										className="ml-2"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<div>
 						{uniqueID && (
 							<button
 								type="button"
 								onClick={sendTokens}
-								className="transition duration-200 ease-in mt-5  text-xl font-extrabold px-3 border-[#6BA3F7] border-2 py-2 rounded-xl hover:bg-[#6BA3F7] hover:text-white   "
+								className="transition duration-200 sm:w-3/4 lg:w-1/2 ease-in mt-5 w-full  text-xl font-bold px-3 bg-[#6BA3F7]  py-2 rounded-lg hover:bg-[#2377f5] text-white   "
 							>
 								Pay Now
 							</button>
 						)}
 					</div>
-				</>
+					<div className="items-center justify-center text-slate-400 flex mt-3 py-3">
+						<p className="text-xs mr-1">
+							Current Balance is {account?.balance}
+						</p>
+						<Image src="/near.svg" height="12" width="30" alt="near" />
+					</div>
+				</div>
 			)}
 		</div>
 	);

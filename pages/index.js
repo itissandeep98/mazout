@@ -71,7 +71,7 @@ function Index({ wallet, near }) {
 					<button
 						type="button"
 						onClick={signOut}
-						className="text-red-700 hover:text-white block mt-6 absolute bottom-0 right-0 m-4   transition duration-200 ease-in    font-medium rounded-full text-sm px-5 py-2.5 border border-red-700  hover:bg-red-700 "
+						className="text-red-700 hover:text-white block mt-6 absolute top-0 right-0 m-4   transition duration-200 ease-in    font-medium rounded-lg text-sm px-5 py-2.5 border border-red-700  hover:bg-red-700 "
 					>
 						Sign out
 					</button>
