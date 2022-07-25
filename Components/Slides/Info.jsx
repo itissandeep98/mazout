@@ -5,7 +5,7 @@ function Info({ inc, info, setInfo }) {
 	const healthData = [
 		{
 			key: "Charge",
-			value: "10%",
+			value: "30%",
 			icon: "/charge.svg",
 			subtext: "34 Min to full charge",
 		},
@@ -46,7 +46,7 @@ function Info({ inc, info, setInfo }) {
 					{healthData.map((item, index) => (
 						<div
 							key={index}
-							className="bg-gray-100 w-60 m-2 p-3 rounded-xl cursor-pointer hover:shadow-2xl transition duration-200 ease-in text-center"
+							className="bg-gray-100 w-60 m-2 p-3 rounded-xl  hover:shadow-2xl transition duration-200 ease-in text-center"
 						>
 							<div className="flex items-center space-x-3">
 								<Image src={item.icon} alt="charge" width={20} height={20} />

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Charging() {
-	const [percent, setPercent] = useState(10);
+	const [percent, setPercent] = useState(30);
 
 	return (
 		<div className="relative">

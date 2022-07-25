@@ -27,18 +27,24 @@ function Charge({ inc, info }) {
 						>
 							End Now
 						</button>
+						<p className="text-xs  w-40 mt-2 text-slate-500">
+							Click on the notification received on mobile to confirm
+							cancellation
+						</p>
 					</div>
 				</div>
 				<div className=" w-3/5 lg:w-5/12 ">
-					<h2 className="text-3xl font-bold text-center"> Ongoing Order</h2>
-					{details.map((item, index) => (
-						<div
-							key={index}
-							className=" bg-slate-100 text-slate-500 my-3  p-3 rounded-xl w-full flex justify-center"
-						>
-							<p className=" font-bold">{item}</p>
-						</div>
-					))}
+					<h2 className="text-3xl font-bold text-center"> Charging your EV </h2>
+					<div className="bg-slate-100 p-3 rounded-xl w-full mt-6">
+						{details.map((item, index) => (
+							<div
+								key={index}
+								className="  text-slate-500 my-3   flex justify-center"
+							>
+								<p className=" font-bold">{item}</p>
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 		</>
