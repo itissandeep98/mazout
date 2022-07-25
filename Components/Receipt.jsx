@@ -77,9 +77,7 @@ function Receipt({ near, account_id, value, uniqueID }) {
 								</g>
 							</svg>
 						</div>
-						<p className=" text-2xl font-bold">
-							Transaction successfull, Now you can use the vehicle ;){" "}
-						</p>
+						<p className=" text-2xl font-bold">Transaction successfull </p>
 
 						<p className="text-xl mt-5 text-red-700">
 							You can now close this app
@@ -131,7 +129,7 @@ function Receipt({ near, account_id, value, uniqueID }) {
 							<div className="flex w-full items-center justify-between text-xs">
 								<p>Vehicle</p>
 								<div className=" font-medium w-60 p-2 text-slate-400 text-right ">
-									Sheldon Z2 DL8CD7684
+									Locus Stride 150
 								</div>
 							</div>
 							<div className="flex w-full items-center justify-between text-xs">
