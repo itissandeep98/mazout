@@ -13,8 +13,6 @@ function Index({ wallet, near }) {
 	const { value, uniqueID } = router.query;
 	const account_id = wallet?.account()?.accountId;
 
-	const [cameraStatus, setCameraStatus] = useState(false);
-
 	const signOut = async () => {
 		wallet.signOut();
 		router.push("/");

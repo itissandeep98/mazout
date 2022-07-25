@@ -5,7 +5,7 @@ function Info({ inc, info, setInfo }) {
 	const healthData = [
 		{
 			key: "Charge",
-			value: "100%",
+			value: "10%",
 			icon: "/charge.svg",
 			subtext: "27 Min to full charge",
 		},
@@ -35,7 +35,7 @@ function Info({ inc, info, setInfo }) {
 		},
 	];
 	return (
-		<div>
+		<div className="py-10">
 			<div className="px-12">
 				<h1 className="text-3xl  mb-10">Welcome User!</h1>
 				<p className="font-semibold ">

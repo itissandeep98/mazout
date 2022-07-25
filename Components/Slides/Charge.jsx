@@ -2,39 +2,19 @@ import Charging from "../Charging";
 
 function Charge({ inc, info }) {
 	const details = [
-		{
-			key: "Order ID",
-			value: info?.id,
-		},
-		{
-			key: "Vehicle",
-			value: "BMW",
-		},
-		{
-			key: "Capacity",
-			value: "23 Ah",
-		},
-		{
-			key: "Battery Health",
-			value: "Good",
-		},
-		{
-			key: "Plan",
-			value: "Upto 100% for 226 km",
-		},
-		{
-			key: "Payment",
-			value: `${info?.value} Near`,
-		},
+		"Your charging has begun!",
+		"You will be notified once your vehicle is charged",
+		"Relax at nearby cafe!",
+		"End Now if you wish to stall the charging",
 	];
 	return (
-		<div className="  flex  justify-around pt-10  items-center">
+		<div className="  flex  justify-around pt-40  items-center pb-10">
 			<div className="flex flex-col ">
 				<div className=" mb-40">
 					<Charging />
 				</div>
 				<div className="text-center">
-					<p className="text-3xl font-extrabold">34 mins</p>
+					<p className="text-3xl font-extrabold">27 mins</p>
 					<p>To Full Charge</p>
 					<button
 						onClick={inc}
@@ -49,10 +29,9 @@ function Charge({ inc, info }) {
 				{details.map((item, index) => (
 					<div
 						key={index}
-						className=" bg-slate-100 my-3  p-3 rounded-xl w-full flex justify-between"
+						className=" bg-slate-100 text-slate-500 my-3  p-3 rounded-xl w-full flex justify-center"
 					>
-						<p className=" font-bold">{item.key}</p>
-						<p className="text-slate-400 text-clip">{item.value}</p>
+						<p className=" font-bold">{item}</p>
 					</div>
 				))}
 			</div>

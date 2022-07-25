@@ -5,9 +5,9 @@ import { showAlert } from "../Alert";
 import NearPayBtn from "../NearPayBtn";
 
 function Plans({ inc, setInfo }) {
-	const [soc, setSoc] = useState(0);
-	const [duration, setDuration] = useState(0);
-	const [range, setRange] = useState(0);
+	const [soc, setSoc] = useState(null);
+	const [duration, setDuration] = useState(null);
+	const [range, setRange] = useState(null);
 	const [amount, setAmount] = useState(0);
 	const [showCustom, setShowCustom] = useState(false);
 
@@ -32,7 +32,9 @@ function Plans({ inc, setInfo }) {
 	};
 
 	useEffect(() => {
-		setAmount((soc / 10 + duration / 10 + range / 10).toFixed(2));
+		if (soc && duration && range) {
+			setAmount((soc / 10 + duration / 10 + range / 10).toFixed(2));
+		}
 	}, [soc, duration, range]);
 
 	const plans = [
@@ -140,65 +142,65 @@ function Plans({ inc, setInfo }) {
 							Select from <br /> Quick charge
 						</p>
 					</button>
-					<div className=" bg-slate-100 hover:shadow-xl  transition duration-200 ease-in px-6 py-10 rounded-xl ">
+					<div className=" bg-slate-100 hover:shadow-xl  transition duration-200 ease-in px-6 py-6 rounded-xl ">
 						<div className="relative z-0  group w-40 ">
+							<label
+								htmlFor="floating_soc"
+								className="  text-sm  text-gray-600 duration-300 "
+							>
+								Charge (in %)
+							</label>
 							<input
 								type="number"
 								name="floating_soc"
 								className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 appearance-none text-gray-900 border-gray-400  focus:outline-none focus:ring-0  peer"
-								placeholder=" "
+								placeholder="60%"
 								required
 								value={soc}
 								min={0}
 								max={100}
 								onChange={(e) => setSoc(parseInt(e.target.value))}
 							/>
-							<label
-								htmlFor="floating_soc"
-								className="peer-focus:font-medium absolute text-sm  text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-							>
-								Charge (in %)
-							</label>
 						</div>
 					</div>
-					<div className=" bg-slate-100 hover:shadow-xl  transition duration-200 ease-in px-6 py-10 rounded-xl ">
-						<div className="relative z-0  group  w-40">
+					<div className=" bg-slate-100 hover:shadow-xl  transition duration-200 ease-in px-6 py-6 rounded-xl ">
+						<div className="relative z-0  group w-40 ">
+							<label
+								htmlFor="floating_duration"
+								className="  text-sm  text-gray-600 duration-300 "
+							>
+								Duration (in mins)
+							</label>
 							<input
 								type="number"
 								name="floating_duration"
 								className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-gray-900 border-gray-400  focus:outline-none focus:ring-0  peer"
-								placeholder=" "
+								placeholder="60 mins "
 								required
 								value={duration}
 								min={0}
 								onChange={(e) => setDuration(parseInt(e.target.value))}
 							/>
-							<label
-								htmlFor="floating_duration"
-								className="peer-focus:font-medium absolute text-sm  text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-							>
-								Duration (in mins)
-							</label>
 						</div>
 					</div>
-					<div className=" bg-slate-100 hover:shadow-xl  transition duration-200 ease-in px-6 py-10 rounded-xl ">
-						<div className="relative z-0  group  w-40">
+					<div className=" bg-slate-100 hover:shadow-xl  transition duration-200 ease-in px-6 py-6 rounded-xl ">
+						<div className="relative z-0  group w-40 ">
+							<label
+								htmlFor="floating_range"
+								className="  text-sm  text-gray-600 duration-300 "
+							>
+								Range (in km)
+							</label>
 							<input
 								type="number"
 								name="floating_range"
 								className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2  appearance-none text-gray-900 border-gray-400  focus:outline-none focus:ring-0  peer"
-								placeholder=" "
+								placeholder="100km "
 								required
 								value={range}
 								min={0}
 								onChange={(e) => setRange(parseInt(e.target.value))}
 							/>
-							<label
-								htmlFor="floating_range"
-								className="peer-focus:font-medium absolute text-sm  text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0  peer-focus:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-							>
-								Range (in km)
-							</label>
 						</div>
 					</div>
 					<div className=" font-semibold text-xl   text-center">
@@ -207,9 +209,13 @@ function Plans({ inc, setInfo }) {
 							handlePayment={handlePayment}
 							addData={() => addData(amount)}
 						>
-							{amount}
-							<br />
-							<Image src="/near.svg" height="20" width="50" alt="near" />
+							{!isNaN(amount) && (
+								<>
+									{amount}
+									<br />
+									<Image src="/near.svg" height="20" width="50" alt="near" />
+								</>
+							)}
 						</NearPayBtn>
 					</div>
 					<div className="rotate-90 shadow-lg -mr-14 text-center bg-gradient text-white font-medium text-xl px-2 py-3 rounded-b w-40">
