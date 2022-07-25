@@ -19,7 +19,7 @@ function Charge({ inc, info }) {
 						<Charging />
 					</div>
 					<div className="text-center">
-						<p className="text-3xl font-extrabold">34 mins</p>
+						<p className="text-3xl font-extrabold">70 mins</p>
 						<p>To Full Charge</p>
 						<button
 							onClick={() => setShow(true)}
@@ -37,10 +37,7 @@ function Charge({ inc, info }) {
 					<h2 className="text-3xl font-bold text-center"> Charging your EV </h2>
 					<div className="bg-slate-100 p-3 rounded-xl w-full mt-6">
 						{details.map((item, index) => (
-							<div
-								key={index}
-								className="  text-slate-500 my-3   flex justify-center"
-							>
+							<div key={index} className="  text-slate-500 my-3 ">
 								<p className=" font-bold">{item}</p>
 							</div>
 						))}

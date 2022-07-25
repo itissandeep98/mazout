@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { QRCode } from "react-qrcode-logo";
 
 function QRModal({ setShow, url, value }) {
@@ -28,13 +29,20 @@ function QRModal({ setShow, url, value }) {
 							<div className="font-semibold flex flex-col items-center">
 								<p> Please Scan QR code to Pay</p>
 								<QRCode value={url} />
-								<p>
-									Paying{" "}
-									<span className="text-slate-400 font-bold">
-										{value} NEAR{" "}
-									</span>{" "}
-									to Mazout Electric
-								</p>
+								<div className="flex  space-x-2">
+									<p>Paying </p>
+									<span className="text-slate-400 font-bold flex items-center ">
+										<p className="mr-1">{value}</p>
+										<Image
+											src="/near.svg"
+											height="20"
+											width="50"
+											alt="near"
+											className="mx-2"
+										/>
+									</span>
+									<p>to Mazout Electric</p>
+								</div>
 							</div>
 						) : (
 							<div className="text-center"> Generating QR Code... </div>

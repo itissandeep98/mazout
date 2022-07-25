@@ -7,31 +7,27 @@ function Info({ inc, info, setInfo }) {
 			key: "Charge",
 			value: "30%",
 			icon: "/charge.svg",
-			subtext: "34 Min to full charge",
+			subtext: "70 Min to full charge",
 		},
 		{
 			key: "Cycles",
 			value: 23,
 			icon: "/cycles.svg",
-			subtext: "34 Min to full charge",
 		},
 		{
 			key: "Capacity",
 			value: "23Ah",
 			icon: "/capacity.svg",
-			subtext: "34 Min to full charge",
 		},
 		{
 			key: "Voltage",
 			value: "67.8V",
 			icon: "/voltage.svg",
-			subtext: "34 Min to full charge",
 		},
 		{
 			key: "Range Left",
 			value: "65 km",
 			icon: "/range.svg",
-			subtext: "34 Min to full charge",
 		},
 	];
 	return (
