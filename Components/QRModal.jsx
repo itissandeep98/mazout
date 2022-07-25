@@ -1,6 +1,6 @@
 import { QRCode } from "react-qrcode-logo";
 
-function QRModal({ setShow, url }) {
+function QRModal({ setShow, url, value }) {
 	return (
 		<div className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 inset-0 h-full  backdrop-blur-sm  flex items-center justify-center">
 			<div className="relative w-full max-w-md h-auto  ">
@@ -28,7 +28,13 @@ function QRModal({ setShow, url }) {
 							<div className="font-semibold flex flex-col items-center">
 								<p> Please Scan QR code to Pay</p>
 								<QRCode value={url} />
-								<p>Paying Mazout electric Solutions</p>
+								<p>
+									Paying{" "}
+									<span className="text-slate-400 font-bold">
+										{value} NEAR{" "}
+									</span>{" "}
+									to Mazout Electric
+								</p>
 							</div>
 						) : (
 							<div className="text-center"> Generating QR Code... </div>

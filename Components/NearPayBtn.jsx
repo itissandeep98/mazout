@@ -25,7 +25,7 @@ function NearPayBtn({ value, addData, handlePayment, className, children }) {
 
 	return (
 		<>
-			{show && <QRModal url={url?.href} setShow={setShow} />}
+			{show && <QRModal url={url?.href} setShow={setShow} value={value} />}
 
 			<div
 				className={className + " cursor-pointer"}
