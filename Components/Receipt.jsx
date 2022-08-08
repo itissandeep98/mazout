@@ -2,7 +2,7 @@ import { utils } from "near-api-js";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { explorerUrl, PayoutAccount } from "../config/constants";
+import { basePath, explorerUrl, PayoutAccount } from "../config/constants";
 import { supabase } from "../config/supabase";
 import { showAlert } from "./Alert";
 
@@ -63,8 +63,8 @@ function Receipt({ near, account_id, value, uniqueID }) {
 									cy="75"
 									r="50"
 									fill="none"
-									stroke-width="5"
-									stroke-miterlimit="10"
+									strokeWidth="5"
+									strokeMiterlimit="10"
 								/>
 							</svg>
 							<svg className="checkmark green-stroke">
@@ -110,7 +110,12 @@ function Receipt({ near, account_id, value, uniqueID }) {
 						<p className="text-xs mr-1">
 							Updated Balance is {account?.balance}
 						</p>
-						<Image src="/near.svg" height="12" width="30" alt="near" />
+						<Image
+							src={`${basePath}/near.svg`}
+							height="12"
+							width="30"
+							alt="near"
+						/>
 					</div>
 				</div>
 			) : (
@@ -196,7 +201,12 @@ function Receipt({ near, account_id, value, uniqueID }) {
 						<p className="text-xs mr-1">
 							Current Balance is {account?.balance}
 						</p>
-						<Image src="/near.svg" height="12" width="30" alt="near" />
+						<Image
+							src={`${basePath}/near.svg`}
+							height="12"
+							width="30"
+							alt="near"
+						/>
 					</div>
 				</div>
 			)}

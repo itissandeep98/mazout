@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { QRCode } from "react-qrcode-logo";
+import { basePath } from "../config/constants";
 
 function QRModal({ setShow, url, value }) {
 	return (
@@ -34,7 +35,7 @@ function QRModal({ setShow, url, value }) {
 									<span className="text-slate-400 font-bold flex items-center ">
 										<p className="mr-1">{value}</p>
 										<Image
-											src="/near.svg"
+											src={`${basePath}/near.svg`}
 											height="20"
 											width="50"
 											alt="near"

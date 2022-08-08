@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { basePath } from "../../config/constants";
 import Plans from "./Plans";
 
 function Info({ inc, info, setInfo }) {
@@ -45,7 +46,12 @@ function Info({ inc, info, setInfo }) {
 							className="bg-gray-100 w-60 m-2 p-3 rounded-xl  hover:shadow-2xl transition duration-200 ease-in text-center"
 						>
 							<div className="flex items-center space-x-3">
-								<Image src={item.icon} alt="charge" width={20} height={20} />
+								<Image
+									src={`${basePath}/${item.icon}`}
+									alt="charge"
+									width={20}
+									height={20}
+								/>
 								<h2 className=" font-bold">{item.key}</h2>
 							</div>
 							<div className="text-4xl mt-6 font-bold text-gray-500">

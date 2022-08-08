@@ -1,7 +1,9 @@
 import Head from "next/head";
-import React from "react";
 import Script from "next/script";
-const defaultImage = "/fav.png";
+import React from "react";
+import { basePath } from "../config/constants";
+
+const defaultImage = `${basePath}/fav.png`;
 
 const Meta = ({ title, keywords, description, url, image }) => {
 	return (

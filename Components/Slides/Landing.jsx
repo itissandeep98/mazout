@@ -1,11 +1,12 @@
 import Image from "next/image";
+import { basePath } from "../../config/constants";
 
 function Landing({ inc }) {
 	return (
 		<div className="bg-[url(/sky.png)] bg-contain pt-10 text-gray-500">
 			<div className=" text-center">
 				<Image
-					src="/logo1.svg"
+					src={`${basePath}/logo1.svg`}
 					height="100"
 					width="300"
 					alt="mazout"
@@ -17,7 +18,12 @@ function Landing({ inc }) {
 				onClick={inc}
 			>
 				Plug in to get started
-				<Image src="/plug.svg" height="50" width="70" alt="mazout" />
+				<Image
+					src={`${basePath}/plug.svg`}
+					height="50"
+					width="70"
+					alt="mazout"
+				/>
 			</div>
 			<div className="px-4 font-bold text-lg flex items-center">
 				<svg
@@ -33,7 +39,12 @@ function Landing({ inc }) {
 					/>
 				</svg>
 				<p className="mx-4">43 KWh pumped till now</p>
-				<Image src="/tree.png" height="40" width="30" alt="mazout" />
+				<Image
+					src={`${basePath}/tree.png`}
+					height="40"
+					width="30"
+					alt="mazout"
+				/>
 			</div>
 
 			<div className="h-28 bg-black" />

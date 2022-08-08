@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { useState } from "react";
-import Info from "../Components/Slides/Info";
 import Charge from "../Components/Slides/Charge";
+import Info from "../Components/Slides/Info";
 import Landing from "../Components/Slides/Landing";
+import { basePath } from "../config/constants";
 
 function Home() {
 	const [index, setIndex] = useState(0);
@@ -19,7 +20,7 @@ function Home() {
 			{index > 0 && (
 				<div className="absolute right-0 top-0 m-4">
 					<Image
-						src="/logo1.svg"
+						src={`${basePath}/logo1.svg`}
 						height="50"
 						width="150"
 						alt="mazout"

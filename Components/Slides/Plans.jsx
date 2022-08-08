@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { basePath } from "../../config/constants";
 import { supabase } from "../../config/supabase";
 import { showAlert } from "../Alert";
 import NearPayBtn from "../NearPayBtn";
@@ -90,7 +91,12 @@ function Plans({ inc, setInfo }) {
 								<div className="absolute bottom-2 right-2 text-gray-400  text-center">
 									{item.value}
 									<br />
-									<Image src="/near.svg" height="20" width="50" alt="near" />
+									<Image
+										src={`${basePath}/near.svg`}
+										height="20"
+										width="50"
+										alt="near"
+									/>
 								</div>
 							</div>
 						</NearPayBtn>
@@ -213,7 +219,12 @@ function Plans({ inc, setInfo }) {
 								<>
 									{amount}
 									<br />
-									<Image src="/near.svg" height="20" width="50" alt="near" />
+									<Image
+										src={`${basePath}/near.svg`}
+										height="20"
+										width="50"
+										alt="near"
+									/>
 								</>
 							)}
 						</NearPayBtn>

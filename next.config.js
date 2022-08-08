@@ -4,6 +4,7 @@ const { withLayer0, withServiceWorker } = require("@layer0/next/config");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	basePath: "/mazout",
 	reactStrictMode: true,
 	swcMinify: true,
 	experimental: {
@@ -13,13 +14,15 @@ const nextConfig = {
 	},
 };
 
-module.exports = (phase, config) =>
-	withLayer0(
-		withServiceWorker({
-			// Output sourcemaps so that stack traces have original source filenames and line numbers when tailing
-			// the logs in the Layer0 developer console.
-			layer0SourceMaps: true,
+module.exports = (phase, config) => nextConfig;
 
-			...nextConfig,
-		})
-	);
+// module.exports = (phase, config) =>
+// 	withLayer0(
+// 		withServiceWorker({
+// 			// Output sourcemaps so that stack traces have original source filenames and line numbers when tailing
+// 			// the logs in the Layer0 developer console.
+// 			layer0SourceMaps: true,
+
+// 			...nextConfig,
+// 		})
+// 	);
