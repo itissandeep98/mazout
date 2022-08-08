@@ -7,7 +7,7 @@ name: Deploy Next.js site to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: ["pages"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -76,8 +76,8 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secret.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secret.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
       - name: Upload artifact
