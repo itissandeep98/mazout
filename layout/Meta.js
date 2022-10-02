@@ -53,7 +53,7 @@ Meta.defaultProps = {
 	keywords: "",
 	description:
 		"We make powerful electric cruiser bike with artificial intelligence features which gives you an excellent uninterrupted riding experience",
-	url: "https://mazoutelectric.com/",
+	url: "https://locus.itissandeep.co/",
 	image: defaultImage,
 };
 
