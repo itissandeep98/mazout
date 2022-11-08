@@ -1,0 +1,6 @@
+Sitemap: https://locus.itissandeep.co/sitemap.xml
+
+User-agent: *
+Allow: /*
+
+Disallow: 
