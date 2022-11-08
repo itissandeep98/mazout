@@ -1,7 +1,7 @@
 // This file was automatically added by layer0 deploy.
 // You should commit this file to source control.
 const { Router } = require("@layer0/core/router");
-const { nextRoutes } = require("@layer0/next");
+const { nextRoutes,renderNextPage  } = require("@layer0/next");
 
 const foreverEdge = {
 	browser: {
@@ -18,6 +18,9 @@ let prerenderPages = ["/", "/home"];
 
 module.exports = new Router()
 	.prerender(prerenderPages.map((page) => ({ path: page })))
+.get('/sitemap.xml', (res) => {
+		renderNextPage('/sitemap.xml', res);
+	})
 	.match("/_next/static/:path*", ({ cache, removeUpstreamResponseHeader }) => {
 		removeUpstreamResponseHeader("set-cookie");
 		removeUpstreamResponseHeader("cache-control");
